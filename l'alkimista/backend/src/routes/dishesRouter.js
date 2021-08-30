@@ -16,3 +16,5 @@ dishRouter
   .route('/:dishId')
   .put(updateDish)
   .delete(deleteDish);
+
+module.exports = dishRouter;
