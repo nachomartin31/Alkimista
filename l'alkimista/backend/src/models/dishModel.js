@@ -2,12 +2,12 @@ const { model, Schema } = require('mongoose');
 
 const dishSchema = Schema({
   name: String,
+  image: String,
   descriptionCat: String,
   descriptionSpa: String,
   ingredientsCat: [
     String
   ],
-  image: String,
   ingredientsSpa: [
     String
   ],
