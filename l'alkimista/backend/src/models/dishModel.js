@@ -1,13 +1,13 @@
 const { model, Schema } = require('mongoose');
 
 const dishSchema = Schema({
-  nameCat: String,
-  nameSpa: String,
+  name: String,
   descriptionCat: String,
   descriptionSpa: String,
   ingredientsCat: [
     String
   ],
+  image: String,
   ingredientsSpa: [
     String
   ],
