@@ -13,8 +13,12 @@ require('./src/config/passportConfig');
 server.use(morgan('dev'));
 server.use(express.json());
 
-const router = require('./src/routes/router');
+const dishesRouter = require('./src/routes/dishesRouter');
 
-server.use('/', router);
+server.use('/api/dishes', dishesRouter);
+
+const menuRouter = require('./src/routes/menuRouter');
+
+server.use('/api/menu', menuRouter);
 
 server.listen(port, debug(`Server is running on port ${port}`));
