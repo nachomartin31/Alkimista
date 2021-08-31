@@ -7,4 +7,8 @@ const userSchema = Schema({
   role: { type: String, default: 'employee' }
 });
 
+userSchema.methods.isValidPassword = function isValidPassword(password) {
+  return password === this.password;
+};
+
 module.exports = model('User', userSchema);
