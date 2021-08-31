@@ -24,9 +24,20 @@ async function createOne({ body }, res) {
   }
 }
 
+async function updateMenu({ params: { menuId }, body }, res) {
+  try {
+    const updatedMenu = await Menu.findByIdAndUpdate(menuId, body, { new: true });
+    res.json(updatedMenu);
+  } catch (error) {
+    res.status(500);
+    res.send(error);
+  }
+}
+
 async function deleteOne({ params: { menuId } }, res) {
   try {
     await Menu.findByIdAndDelete(menuId);
+    res.send('Menu deleted');
   } catch (error) {
     res.status(500);
     res.send(error);
@@ -36,5 +47,6 @@ async function deleteOne({ params: { menuId } }, res) {
 module.exports = {
   getAll,
   createOne,
-  deleteOne
+  deleteOne,
+  updateMenu
 };
