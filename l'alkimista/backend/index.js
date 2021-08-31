@@ -8,7 +8,7 @@ require('./src/config/mongooseConfig');
 const server = express();
 const port = process.env.PORT || 5001;
 
-require('./src/config/passportConfig');
+require('./src/config/passportConfig')(server);
 
 server.use(morgan('dev'));
 server.use(express.json());

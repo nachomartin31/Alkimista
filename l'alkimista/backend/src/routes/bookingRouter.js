@@ -1,4 +1,5 @@
 const { Router } = require('express');
+const passport = require('passport');
 const bookingController = require('../controllers/bookingController');
 
 const {
@@ -14,6 +15,7 @@ bookRouter
   .delete(deleteBookById);
 
 bookRouter
+  .all(passport.authenthicate('jwt', { session: false }))
   .route('/')
   .get(getAll)
   .post(createBook);
