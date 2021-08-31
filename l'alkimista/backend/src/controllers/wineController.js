@@ -33,6 +33,7 @@ async function getOneById({ params: { wineId } }, res) {
 async function deleteById({ params: { wineId } }, res) {
   try {
     await Wine.findByIdAndDelete(wineId);
+    res.send('Wine deleted');
   } catch (error) {
     res.status(500);
     res.send(error);
