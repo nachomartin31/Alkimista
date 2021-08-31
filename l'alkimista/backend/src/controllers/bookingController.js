@@ -20,7 +20,40 @@ async function createBook({ body }, res) {
   }
 }
 
+async function getBookById({ params: { bookId } }, res) {
+  try {
+    const book = await Book.findById(bookId);
+    res.json(book);
+  } catch (error) {
+    res.status(500);
+    res.send(error);
+  }
+}
+
+async function updateBookById({ params: { bookId }, body }, res) {
+  try {
+    const updatedBook = await Book.findByIdAndUpdate(bookId, body, { new: true });
+    res.json(updatedBook);
+  } catch (error) {
+    res.status(500);
+    res.send(error);
+  }
+}
+
+async function deleteBookById({ params: { bookId } }, res) {
+  try {
+    await Book.findByIdAndDelete(bookId);
+    res.send('Book deleted');
+  } catch (error) {
+    res.status(500);
+    res.send(error);
+  }
+}
+
 module.exports = {
   getAll,
-  createBook
+  createBook,
+  getBookById,
+  updateBookById,
+  deleteBookById
 };

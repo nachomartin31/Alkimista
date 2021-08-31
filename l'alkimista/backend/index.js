@@ -21,4 +21,16 @@ const menuRouter = require('./src/routes/menuRouter');
 
 server.use('/api/menu', menuRouter);
 
+const userRouter = require('./src/routes/userRouter');
+
+server.use('/api/users', userRouter);
+
+const wineRouter = require('./src/routes/wineRouter');
+
+server.use('/api/wines', wineRouter);
+
+const bookRouter = require('./src/routes/bookingRouter');
+
+server.use('/api/books', bookRouter);
+
 server.listen(port, debug(`Server is running on port ${port}`));
