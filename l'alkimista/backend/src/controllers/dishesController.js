@@ -21,7 +21,7 @@ async function createOne({ body }, res) {
   }
 }
 
-async function updateDish({ params: dishId, body }, res) {
+async function updateDish({ params: { dishId }, body }, res) {
   try {
     const dishToUpdate = await Dish.findByIdAndUpdate(dishId, body);
     res.json(dishToUpdate);
@@ -31,7 +31,7 @@ async function updateDish({ params: dishId, body }, res) {
   }
 }
 
-async function deleteDish({ params: dishId }, res) {
+async function deleteDish({ params: { dishId } }, res) {
   try {
     await Dish.findByIdAndDelete(dishId);
   } catch (error) {

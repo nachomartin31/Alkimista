@@ -1,13 +1,9 @@
-const Menu = require('../models/menuModel');
+const User = require('../models/userModel');
 
 async function getAll({ query }, res) {
   try {
-    const menuSelected = await Menu.find(query)
-      .populate({
-        path: 'dishes',
-        select: 'name'
-      });
-    res.json(menuSelected);
+    const user = await User.find(query);
+    res.json(user);
   } catch (error) {
     res.status(500);
     res.send(error);
@@ -16,23 +12,23 @@ async function getAll({ query }, res) {
 
 async function createOne({ body }, res) {
   try {
-    const newMenu = await Menu.create(body);
-    res.json(newMenu);
+    const newUser = await User.create(body);
+    res.json(newUser);
   } catch (error) {
     res.status(500);
     res.send(error);
   }
 }
 
-async function deleteOne({ params: { menuId } }, res) {
+async function deleteOne({ params: { userId } }, res) {
   try {
-    await Menu.findByIdAndDelete(menuId);
+    await User.findByIdAndDelete(userId);
+    res.send('User deleted');
   } catch (error) {
     res.status(500);
     res.send(error);
   }
 }
-
 module.exports = {
   getAll,
   createOne,
