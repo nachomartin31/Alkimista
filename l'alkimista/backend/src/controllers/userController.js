@@ -1,3 +1,5 @@
+/* eslint-disable no-underscore-dangle */
+const jwt = require('jsonwebtoken');
 const User = require('../models/userModel');
 
 async function getAll({ query }, res) {
@@ -7,6 +9,39 @@ async function getAll({ query }, res) {
   } catch (error) {
     res.status(500);
     res.send(error);
+  }
+}
+
+async function signUp({ user }, res) {
+  res.send({
+    user,
+    message: 'Register works'
+  });
+}
+
+const refreshTokens = [];
+async function login({ user }, res) {
+  const data = { _id: user._id, login: user.login };
+  try {
+    const token = jwt.sign(
+      { user: data },
+      process.env.JWT_SECRET,
+      { expiresIn: '15m' }
+    );
+    const refreshToken = jwt.sign(
+      { user: data },
+      process.env.JWT_SECRET
+    );
+
+    refreshTokens.push(refreshToken);
+
+    return res.json({
+      token,
+      refreshToken
+    });
+  } catch (error) {
+    res.status(500);
+    return res.send(error);
   }
 }
 
@@ -30,6 +65,8 @@ async function deleteOne({ params: { userId } }, res) {
   }
 }
 module.exports = {
+  signUp,
+  login,
   getAll,
   createOne,
   deleteOne

@@ -1,18 +1,32 @@
 const passport = require('passport');
-const localStrategy = require('passport-local');
+const { Strategy } = require('passport-local');
 const User = require('../../models/userModel');
 
 passport.use(
   'signup',
-  new localStrategy.Strategy(
+  new Strategy(
     {
       usernameField: 'email',
-      passwordField: 'password'
+      passwordField: 'password',
+      passReqToCallback: true
     },
-    async (email, password, done) => {
+    // eslint-disable-next-line consistent-return
+    async (req, email, password, done) => {
       try {
-        const user = await User.create({ email, password });
-        return done(null, user);
+        const user = await User.findOne({ email });
+        if (user) {
+          return done(null, { message: 'user already registered' });
+        }
+        if (!user) {
+          const newUser = await User.create({
+            email,
+            password,
+            name: req.body.name,
+            role: req.body.role,
+            login: req.body.login
+          });
+          return done(null, newUser);
+        }
       } catch (error) {
         return done(error);
       }
@@ -21,14 +35,14 @@ passport.use(
 );
 passport.use(
   'login',
-  new localStrategy.Strategy(
+  new Strategy(
     {
-      usernameField: 'email',
+      usernameField: 'login',
       passwordField: 'password'
     },
-    async (email, password, done) => {
+    async (login, password, done) => {
       try {
-        const user = await User.findOne({ email });
+        const user = await User.findOne({ login });
 
         if (!user) {
           return done(null, false, { message: 'User not found' });

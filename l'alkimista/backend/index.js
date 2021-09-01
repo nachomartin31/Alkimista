@@ -33,4 +33,8 @@ const bookRouter = require('./src/routes/bookingRouter');
 
 server.use('/api/books', bookRouter);
 
+const registerRouter = require('./src/routes/bookingRouter');
+
+server.use('/api/register', registerRouter);
+
 server.listen(port, debug(`Server is running on port ${port}`));
