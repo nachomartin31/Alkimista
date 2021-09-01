@@ -12,7 +12,7 @@ async function getAll({ query }, res) {
   }
 }
 
-async function signUp({ user }, res) {
+function signUp({ user }, res) {
   res.send({
     user,
     message: 'Register works'
@@ -20,29 +20,24 @@ async function signUp({ user }, res) {
 }
 
 const refreshTokens = [];
-async function login({ user }, res) {
+function login({ user }, res) {
   const data = { _id: user._id, login: user.login };
-  try {
-    const token = jwt.sign(
-      { user: data },
-      process.env.JWT_SECRET,
-      { expiresIn: '15m' }
-    );
-    const refreshToken = jwt.sign(
-      { user: data },
-      process.env.JWT_SECRET
-    );
+  const token = jwt.sign(
+    { user: data },
+    process.env.JWT_SECRET,
+    { expiresIn: '15m' }
+  );
+  const refreshToken = jwt.sign(
+    { user: data },
+    process.env.JWT_SECRET
+  );
 
-    refreshTokens.push(refreshToken);
+  refreshTokens.push(refreshToken);
 
-    return res.json({
-      token,
-      refreshToken
-    });
-  } catch (error) {
-    res.status(500);
-    return res.send(error);
-  }
+  return res.json({
+    token,
+    refreshToken
+  });
 }
 
 async function createOne({ body }, res) {
