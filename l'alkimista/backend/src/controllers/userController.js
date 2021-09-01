@@ -20,29 +20,24 @@ function signUp({ user }, res) {
 }
 
 const refreshTokens = [];
-async function login({ user }, res) {
-  try {
-    const data = { _id: user._id, login: user.login };
-    const token = jwt.sign(
-      { user: data },
-      process.env.JWT_SECRET,
-      { expiresIn: '15m' }
-    );
-    const refreshToken = jwt.sign(
-      { user: data },
-      process.env.JWT_SECRET
-    );
+function login({ user }, res) {
+  const data = { _id: user._id, login: user.login };
+  const token = jwt.sign(
+    { user: data },
+    process.env.JWT_SECRET,
+    { expiresIn: '15m' }
+  );
+  const refreshToken = jwt.sign(
+    { user: data },
+    process.env.JWT_SECRET
+  );
 
-    refreshTokens.push(refreshToken);
+  refreshTokens.push(refreshToken);
 
-    res.json({
-      token,
-      refreshToken
-    });
-  } catch (error) {
-    res.status(500);
-    res.send(error);
-  }
+  res.json({
+    token,
+    refreshToken
+  });
 }
 
 async function createOne({ body }, res) {
