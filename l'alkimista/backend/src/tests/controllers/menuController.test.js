@@ -1,11 +1,9 @@
-const Dish = require('../../models/dishModel');
-const dishesController = require('../../controllers/dishesController');
+const Menu = require('../../models/menuModel');
+const menuController = require('../../controllers/menuController');
 
-jest.mock('../../models/dishModel');
-
+jest.mock('../../models/menuModel');
 let req;
 let res;
-
 describe('Given a getAll function', () => {
   beforeEach(() => {
     req = {
@@ -16,19 +14,19 @@ describe('Given a getAll function', () => {
       status: jest.fn(),
       send: jest.fn()
     };
-    Dish.find = jest.fn();
+    Menu.find = jest.fn();
   });
   describe('When is invoked with valid arguments', () => {
     test('Then res.json() should be called', async () => {
-      Dish.find.mockResolvedValue([]);
-      await dishesController.getAll(req, res);
+      Menu.find.mockReturnValue({ populate: jest.fn().mockResolvedValue([]) });
+      await menuController.getAll(req, res);
       expect(res.json).toHaveBeenCalled();
     });
   });
-  describe('When us unvoked with invalid arguments', () => {
+  describe('When is invoked with invalid arguments', () => {
     test('Then res.send should be called', async () => {
-      Dish.find.mockRejectedValue();
-      await dishesController.getAll(req, res);
+      Menu.find.mockReturnValue({ populate: jest.fn().mockRejectedValue() });
+      await menuController.getAll(req, res);
       expect(res.send).toHaveBeenCalled();
     });
   });
@@ -41,19 +39,19 @@ describe('Given a createOne function', () => {
       status: jest.fn(),
       send: jest.fn()
     };
-    req = { dish: {} };
+    req = { menu: {} };
   });
   describe('When is invoked when proper arguments', () => {
     test('Then res.json should be called ', async () => {
-      Dish.create.mockResolvedValue(req.body);
-      await dishesController.createOne(req, res);
+      Menu.create.mockResolvedValue(req.body);
+      await menuController.createOne(req, res);
       expect(res.json).toHaveBeenCalled();
     });
   });
   describe('When is invoked when wrong arguments', () => {
     test('Then res.send should be called ', async () => {
-      Dish.create.mockRejectedValue();
-      await dishesController.createOne(req, res);
+      Menu.create.mockRejectedValue();
+      await menuController.createOne(req, res);
       expect(res.send).toHaveBeenCalled();
     });
   });
@@ -66,28 +64,28 @@ describe('Given a deleteOne function', () => {
       status: jest.fn(),
       send: jest.fn()
     };
-    req = { params: { dishId: '' } };
+    req = { params: { menuId: '' } };
   });
   describe('When is invoked with a valid user', () => {
     test('Then res.send.message should be "User deleted"', async () => {
-      Dish.findByIdAndDelete.mockResolvedValue(req.params.DishId);
-      await dishesController.deleteDish(req, res);
-      expect(res.send.mock.calls[0][0]).toBe('Dish deleted');
+      Menu.findByIdAndDelete.mockResolvedValue(req.params.menuId);
+      await menuController.deleteOne(req, res);
+      expect(res.send.mock.calls[0][0]).toBe('Menu deleted');
     });
   });
   describe('When is invoked with an invalid user', () => {
     test('Then res.status should be 500', async () => {
-      Dish.findByIdAndDelete.mockRejectedValue();
-      await dishesController.deleteDish(req, res);
+      Menu.findByIdAndDelete.mockRejectedValue();
+      await menuController.deleteOne(req, res);
       expect(res.status.mock.calls[0][0]).toBe(500);
     });
   });
 });
 
-describe('Given an updateDish function', () => {
+describe('Given an updateMenu function', () => {
   beforeEach(() => {
     req = {
-      params: { dishId: '' },
+      params: { MenuId: '' },
       body: {}
     };
     res = {
@@ -98,44 +96,16 @@ describe('Given an updateDish function', () => {
   });
   describe('When is invoked with valid arguments', () => {
     test('Then res.json should be called', async () => {
-      Dish.findByIdAndUpdate.mockResolvedValue({});
+      Menu.findByIdAndUpdate.mockResolvedValue({});
 
-      await dishesController.updateDish(req, res);
+      await menuController.updateMenu(req, res);
       expect(res.json).toHaveBeenCalled();
     });
   });
   describe('When is invoked with invalid arguments', () => {
     test('Then res.status should be called with 500', async () => {
-      Dish.findByIdAndUpdate.mockRejectedValue();
-      await dishesController.updateDish(req, res);
-      expect(res.status.mock.calls[0][0]).toBe(500);
-    });
-  });
-});
-
-describe('Given a getOneById function', () => {
-  beforeEach(() => {
-    req = {
-      params: { dishId: '' }
-    };
-    res = {
-      send: jest.fn(),
-      json: jest.fn(),
-      status: jest.fn()
-    };
-  });
-  describe('When is invoked with valid arguments', () => {
-    test('Then res.json should be called', async () => {
-      Dish.findById.mockResolvedValue({});
-
-      await dishesController.getDishById(req, res);
-      expect(res.json).toHaveBeenCalled();
-    });
-  });
-  describe('When is invoked with invalid arguments', () => {
-    test('Then res.status should be called with 500', async () => {
-      Dish.findById.mockRejectedValue();
-      await dishesController.getDishById(req, res);
+      Menu.findByIdAndUpdate.mockRejectedValue();
+      await menuController.updateMenu(req, res);
       expect(res.status.mock.calls[0][0]).toBe(500);
     });
   });
