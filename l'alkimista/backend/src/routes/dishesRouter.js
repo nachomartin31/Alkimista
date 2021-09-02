@@ -1,4 +1,5 @@
 const { Router } = require('express');
+const passport = require('passport');
 const dishesController = require('../controllers/dishesController');
 
 const {
@@ -9,7 +10,11 @@ const dishRouter = new Router();
 
 dishRouter
   .route('/:dishId')
-  .get(getDishById)
+  .get(getDishById);
+
+dishRouter
+  .route('/:dishId')
+  .all(passport.authenticate('jwt', { session: false }))
   .put(updateDish)
   .delete(deleteDish);
 

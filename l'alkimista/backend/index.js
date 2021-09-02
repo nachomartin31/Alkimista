@@ -8,7 +8,7 @@ require('./src/config/mongooseConfig');
 const server = express();
 const port = process.env.PORT || 5001;
 
-require('./src/config/passportConfig');
+require('./src/config/passportConfig')(server);
 
 server.use(morgan('dev'));
 server.use(express.json());
@@ -32,5 +32,9 @@ server.use('/api/wines', wineRouter);
 const bookRouter = require('./src/routes/bookingRouter');
 
 server.use('/api/books', bookRouter);
+
+const registerRouter = require('./src/routes/bookingRouter');
+
+server.use('/api/register', registerRouter);
 
 server.listen(port, debug(`Server is running on port ${port}`));

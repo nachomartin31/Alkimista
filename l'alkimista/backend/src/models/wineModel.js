@@ -2,7 +2,7 @@ const { model, Schema } = require('mongoose');
 
 const wineSchema = Schema({
   name: String,
-  cellar: String,
+  winery: String,
   type: String,
   year: Number,
   image: { type: String, default: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQWMq_Jd70_m8O1tkYLlJtB31ugMmGNVEI0zw&usqp=CAU' },
