@@ -7,10 +7,17 @@ export default createStore({
       "Croissant pulled-pork",
       "Rock&Roll, gambes i kimchi",
     ],
+    menus: [
+      "Phi",
+      "Lambda",
+    ],
   },
   getters: {
     getDishes(state) {
       return state.dishes;
+    },
+    getMenus(state) {
+      return state.menus;
     },
   },
   mutations: {

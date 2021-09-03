@@ -1,11 +1,11 @@
 <template>
   <header>
-    <router-link class="button-header" to="/">
+    <router-link class="button-home" to="/">
       <h1>L'Alkimista</h1>
     </router-link>
-    <router-link class="button-header" to="/dishes"> Plats </router-link> |
-    <router-link class="button-header" to="/menus"> Menús </router-link> |
-    <router-link class="button-header" to="/wines"> Vins </router-link> |
+    <router-link class="button-header" to="/dishes"> Plats </router-link>
+    <router-link class="button-header" to="/menus"> Menús </router-link>
+    <router-link class="button-header" to="/wines"> Vins </router-link>
     <router-link class="button-header" to="/booking"> Reservar </router-link>
   </header>
 </template>
@@ -38,5 +38,11 @@ header {
   font-size: 1.2rem;
   font-weight: bold;
   margin-right: 1rem;
+}
+
+@media screen and (max-width: 720px) {
+  .button-header {
+    display: none;
+  }
 }
 </style>

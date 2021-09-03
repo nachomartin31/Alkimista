@@ -21,5 +21,9 @@ export default defineComponent({
 <style>
 li {
   list-style: none;
+  margin: 15px auto;
+}
+a {
+  color: #212121;
 }
 </style>

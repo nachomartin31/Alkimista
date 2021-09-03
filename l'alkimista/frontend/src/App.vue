@@ -16,6 +16,12 @@ export default {
 </script>
 
 <style>
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+}
 #app {
   box-sizing: border-box;
   color: #37474f;
@@ -26,10 +32,6 @@ export default {
   color: #2c3e50;
   margin: 0 auto;
   padding: 0;
-}
-
-#nav {
-  padding: 30px;
 }
 
 #nav a {
