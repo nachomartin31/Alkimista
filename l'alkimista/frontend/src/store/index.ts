@@ -13,12 +13,7 @@ export default createStore({
     ],
   },
   getters: {
-    getDishes(state) {
-      return state.dishes;
-    },
-    getMenus(state) {
-      return state.menus;
-    },
+
   },
   mutations: {
   },
