@@ -22,6 +22,11 @@ export default {
   margin: 0;
   padding: 0;
 }
+body {
+  /* background-image: url("./assets/LAlkimista.svg"); */
+  background-repeat: no-repeat;
+  background-size: cover;
+}
 #app {
   box-sizing: border-box;
   color: #37474f;
