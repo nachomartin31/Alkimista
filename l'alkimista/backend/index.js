@@ -2,6 +2,7 @@ require('dotenv').config();
 const express = require('express');
 const debug = require('debug')('alkimista');
 const morgan = require('morgan');
+const cors = require('cors');
 
 require('./src/config/mongooseConfig');
 
@@ -12,6 +13,7 @@ require('./src/config/passportConfig')(server);
 
 server.use(morgan('dev'));
 server.use(express.json());
+server.use(cors());
 
 const dishesRouter = require('./src/routes/dishesRouter');
 
