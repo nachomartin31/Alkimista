@@ -6,6 +6,7 @@ export default createStore({
   state: {
     dishes: [],
     menus: [],
+    wines: [],
   },
   getters: {
 
@@ -17,6 +18,9 @@ export default createStore({
     loadMenus(state, payload) {
       state.menus = payload;
     },
+    loadWines(state, payload) {
+      state.wines = payload;
+    },
   },
   actions: {
     async fetchDishesFromApi({ commit }) {
@@ -27,6 +31,11 @@ export default createStore({
     async fetchMenusFromApi({ commit }) {
       const { data } = await axios.get("http://localhost:5001/api/menu");
       commit("loadMenus", data);
+    },
+    async fetchWinesFromApi({ commit }) {
+      const { data } = await axios.get("http://localhost:5001/api/wines");
+
+      commit("loadWines", data);
     },
   },
   modules: {
