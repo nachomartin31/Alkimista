@@ -27,19 +27,6 @@
   </header>
 </template>
 
-<script>
-export default {
-  data() {
-    return {
-      open: false,
-    };
-  },
-  methods: {},
-
-  components: {},
-};
-</script>
-
 <style lang="css" scoped>
 *,
 *::before,
