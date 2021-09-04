@@ -40,7 +40,7 @@ export default {
 };
 </script>
 
-<style lang="css">
+<style lang="css" scoped>
 *,
 *::before,
 *::after {
@@ -66,6 +66,7 @@ nav {
 
 a {
   text-decoration: none;
+  color: #fff;
 }
 
 .logo {
@@ -76,7 +77,6 @@ a {
 }
 .button-header {
   margin: 0 1rem;
-  color: #fff;
 }
 
 .title {
