@@ -29,6 +29,9 @@ body {
   /* background-image: url("./assets/LAlkimista.svg"); */
   background-repeat: no-repeat;
   background-size: cover;
+  min-height: 100vh;
+  position: relative;
+  padding-bottom: 5rem;
 }
 #app {
   box-sizing: border-box;
@@ -48,5 +51,9 @@ body {
 
 #nav a.router-link-exact-active {
   color: #bf0101;
+}
+app-footer {
+  position: absolute;
+  bottom: 0;
 }
 </style>
