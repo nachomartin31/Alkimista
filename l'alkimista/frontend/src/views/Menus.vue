@@ -1,19 +1,30 @@
 <template>
   <div>
     <h2>Els nostres menús</h2>
-    <ul>
-      <li v-for="menu in menus" :key="menu">{{ menu }}</li>
-    </ul>
+    <section v-for="menu in menus" :key="menu">
+      <h3>{{ menu.name }}</h3>
+      <ul>
+        <li v-for="dish in menu.dishes" :key="dish">
+          <a href="#">{{ dish.name }}</a>
+        </li>
+      </ul>
+    </section>
   </div>
 </template>
 
 <script>
 import { defineComponent } from "vue";
-import { mapState } from "vuex";
+import { mapActions, mapState } from "vuex";
 
 export default defineComponent({
   computed: {
     ...mapState(["menus"]),
+  },
+  methods: {
+    ...mapActions(["fetchMenusFromApi"]),
+  },
+  mounted() {
+    this.fetchMenusFromApi();
   },
 });
 </script>

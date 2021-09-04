@@ -5,9 +5,7 @@ import axios from "axios";
 export default createStore({
   state: {
     dishes: [],
-    menus: [
-
-    ],
+    menus: [],
   },
   getters: {
 
@@ -16,12 +14,19 @@ export default createStore({
     loadDishes(state, payload) {
       state.dishes = payload;
     },
+    loadMenus(state, payload) {
+      state.menus = payload;
+    },
   },
   actions: {
     async fetchDishesFromApi({ commit }) {
       const { data } = await axios.get("http://localhost:5001/api/dishes/");
 
       commit("loadDishes", data);
+    },
+    async fetchMenusFromApi({ commit }) {
+      const { data } = await axios.get("http://localhost:5001/api/menu");
+      commit("loadMenus", data);
     },
   },
   modules: {
