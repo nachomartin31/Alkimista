@@ -2,18 +2,27 @@
   <div>
     <h2>Els nostres plats</h2>
     <ul>
-      <li v-for="dish in dishes" :key="dish">{{ dish }}</li>
+      <li v-for="dish in dishes" :key="dish">
+        <a href="#">{{ dish.name }}</a>
+      </li>
     </ul>
   </div>
 </template>
 
 <script>
 import { defineComponent } from "vue";
-import { mapState } from "vuex";
+import { mapState, mapActions } from "vuex";
 
 export default defineComponent({
   computed: {
     ...mapState(["dishes"]),
+  },
+  methods: {
+    ...mapActions(["fetchDishesFromApi"]),
+  },
+
+  mounted() {
+    this.fetchDishesFromApi();
   },
 });
 </script>
@@ -22,8 +31,6 @@ export default defineComponent({
 li {
   list-style: none;
   margin: 15px auto;
-}
-a {
   color: #212121;
 }
 </style>

@@ -1,23 +1,28 @@
+/* eslint-disable no-param-reassign */
 import { createStore } from "vuex";
+import axios from "axios";
 
 export default createStore({
   state: {
-    dishes: [
-      "Tomàquet",
-      "Croissant pulled-pork",
-      "Rock&Roll, gambes i kimchi",
-    ],
+    dishes: [],
     menus: [
-      "Phi",
-      "Lambda",
+
     ],
   },
   getters: {
 
   },
   mutations: {
+    loadDishes(state, payload) {
+      state.dishes = payload;
+    },
   },
   actions: {
+    async fetchDishesFromApi({ commit }) {
+      const { data } = await axios.get("http://localhost:5001/api/dishes/");
+
+      commit("loadDishes", data);
+    },
   },
   modules: {
   },
