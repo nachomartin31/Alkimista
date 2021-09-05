@@ -5,6 +5,7 @@ import Menus from "../views/Menus.vue";
 import Wines from "../views/Wines.vue";
 import Booking from "../views/Booking.vue";
 import DishesDetails from "../views/DishesDetails.vue";
+import WinesDetails from "../views/WinesDetails.vue";
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -38,6 +39,11 @@ const routes: Array<RouteRecordRaw> = [
     path: "/dishes/:dishId",
     name: "DishesDetails",
     component: DishesDetails,
+  },
+  {
+    path: "/wines/:wineId",
+    name: "WinesDetails",
+    component: WinesDetails,
   },
 ];
 
