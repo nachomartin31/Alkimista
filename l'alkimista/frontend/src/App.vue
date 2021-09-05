@@ -31,7 +31,6 @@ body {
   background-size: cover;
   min-height: 100vh;
   position: relative;
-  padding-bottom: 5rem;
 }
 #app {
   box-sizing: border-box;
