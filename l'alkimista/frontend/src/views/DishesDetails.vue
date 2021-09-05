@@ -1,5 +1,26 @@
 <template>
-  <h2>{{ currentDish.name }}</h2>
+  <div>
+    <h2>{{ currentDish.name }}</h2>
+
+    <div class="dish__data">
+      <img :src="currentDish.image" :alt="currentDish.name" class="dishImage" />
+      <div class="dish__info">
+        <h3>Descripció</h3>
+        <p>{{ currentDish.descriptionCat }}</p>
+        <h3>Ingredients</h3>
+        <ul>
+          <li
+            v-for="ingredient in currentDish.ingredientsCat"
+            :key="ingredient"
+          >
+            {{ ingredient }}
+          </li>
+        </ul>
+
+        <h4>{{ currentDish.price }} € p.p.u.</h4>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -22,3 +43,36 @@ export default defineComponent({
   },
 });
 </script>
+
+<style scoped>
+h3 {
+  color: #bf0101;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
+h4 {
+  color: #bf0101;
+  font-weight: 300;
+}
+.dish__data {
+  display: flex;
+  margin: 5rem auto;
+  align-items: center;
+  width: 70%;
+  gap: 15%;
+  justify-content: center;
+}
+.dishImage {
+  max-height: 20rem;
+  max-width: 80%;
+}
+.dish__info {
+  display: flex;
+  flex-direction: column;
+}
+@media screen and (max-width: 720px) {
+  .dish__data {
+    flex-direction: column;
+  }
+}
+</style>
