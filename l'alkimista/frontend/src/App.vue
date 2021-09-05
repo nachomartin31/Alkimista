@@ -24,6 +24,8 @@ export default {
 }
 h2 {
   color: #bf0101;
+  margin-top: 3rem;
+  margin-bottom: 2rem;
 }
 body {
   /* background-image: url("./assets/LAlkimista.svg"); */
