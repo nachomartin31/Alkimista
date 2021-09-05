@@ -45,11 +45,6 @@ export default defineComponent({
 </script>
 
 <style scoped>
-h3 {
-  color: #bf0101;
-  margin-top: 2rem;
-  margin-bottom: 1rem;
-}
 h4 {
   color: #bf0101;
   font-weight: 300;

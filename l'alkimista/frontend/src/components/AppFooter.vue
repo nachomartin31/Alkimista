@@ -1,5 +1,5 @@
 <template>
-  <footer><h3>2021 ©L’ALKIMISTA Restaurant</h3></footer>
+  <footer><h4>2021 ©L’ALKIMISTA Restaurant</h4></footer>
 </template>
 
 <style scoped>
@@ -10,7 +10,7 @@ footer {
   bottom: 0;
   width: 100%;
 }
-h3 {
+h4 {
   font-size: 12px;
   font-weight: 300;
   padding: 15px;

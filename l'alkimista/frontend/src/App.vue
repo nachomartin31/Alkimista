@@ -27,6 +27,11 @@ h2 {
   margin-top: 3rem;
   margin-bottom: 2rem;
 }
+h3 {
+  color: #bf0101;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
 body {
   /* background-image: url("./assets/LAlkimista.svg"); */
   background-repeat: no-repeat;

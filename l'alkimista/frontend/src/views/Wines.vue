@@ -3,7 +3,9 @@
     <h2>Els nostres vins</h2>
     <ul>
       <li v-for="wine in wines" :key="wine">
-        <a href="#">{{ wine.name }}</a>
+        <router-link :to="'/wines/' + wine._id"
+          ><span>{{ wine.name }}</span></router-link
+        >
       </li>
     </ul>
   </div>

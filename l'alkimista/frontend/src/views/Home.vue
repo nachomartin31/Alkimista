@@ -55,7 +55,7 @@ h1 {
 .home__info {
   display: flex;
   width: fit-content;
-  margin: 10rem auto 3rem;
+  margin: 10rem auto 0;
   gap: 10vw;
   align-items: center;
 }
