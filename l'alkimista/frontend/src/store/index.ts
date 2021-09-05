@@ -7,6 +7,7 @@ export default createStore({
     dishes: [],
     menus: [],
     wines: [],
+    currentDish: {},
   },
   getters: {
 
@@ -20,6 +21,9 @@ export default createStore({
     },
     loadWines(state, payload) {
       state.wines = payload;
+    },
+    loadOneDish(state, payload) {
+      state.currentDish = payload;
     },
   },
   actions: {
@@ -36,6 +40,12 @@ export default createStore({
       const { data } = await axios.get("http://localhost:5001/api/wines");
 
       commit("loadWines", data);
+    },
+
+    async fetchOneDish({ commit }, id) {
+      const { data } = await axios.get(`http://localhost:5001/api/dishes/${id}`);
+
+      commit("loadOneDish", data);
     },
   },
   modules: {
