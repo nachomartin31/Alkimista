@@ -12,18 +12,25 @@
       tristique nunc ullamcorper at.
     </p>
     <section class="home__info">
-      <address></address>
-      <schedule>
+      <iframe
+        class="home__maps"
+        width="300"
+        height="240"
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3004.050535096877!2d1.1073408156653217!3d41.155248618316165!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12a151f2f70a3b7d%3A0x1f4c86cd4813217f!2zTOKAmUFsa2ltaXN0YQ!5e0!3m2!1sca!2ses!4v1630767548317!5m2!1sca!2ses"
+        style="border: 0"
+        allowfullscreen=""
+      ></iframe>
+      <article>
         <h2>Horari</h2>
         <p>Dinar: De dx a dl, 13:30h - 15:30h</p>
         <p>Sopar: De dj, dv i ds, 20h - 23h</p>
-      </schedule>
-      <contact class="home__contact">
+      </article>
+      <article class="home__contact">
         <h2>Contacte</h2>
-        <email> latavernaalkimista@gmail.com</email>
-        <phone>+34 977 209 766</phone>
-        <phone>+34 686 320 566</phone>
-      </contact>
+        <p>latavernaalkimista@gmail.com</p>
+        <p>+34 977 209 766</p>
+        <p>+34 686 320 566</p>
+      </article>
     </section>
   </div>
 </template>
@@ -33,7 +40,6 @@ import { defineComponent } from "vue";
 
 export default defineComponent({
   name: "Home",
-  components: {},
 });
 </script>
 
@@ -48,11 +54,20 @@ h1 {
 }
 .home__info {
   display: flex;
-  margin: 2rem auto 0;
+  width: fit-content;
+  margin: 10rem auto 3rem;
+  gap: 10vw;
+  align-items: center;
 }
 .home__contact {
   display: flex;
   flex-direction: column;
   margin: 0 1rem;
+}
+@media screen and (max-width: 720px) {
+  .home__info {
+    flex-direction: column;
+    padding-bottom: 5rem;
+  }
 }
 </style>

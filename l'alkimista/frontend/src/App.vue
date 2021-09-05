@@ -24,11 +24,15 @@ export default {
 }
 h2 {
   color: #bf0101;
+  margin-top: 3rem;
+  margin-bottom: 2rem;
 }
 body {
   /* background-image: url("./assets/LAlkimista.svg"); */
   background-repeat: no-repeat;
   background-size: cover;
+  min-height: 100vh;
+  position: relative;
 }
 #app {
   box-sizing: border-box;
@@ -48,5 +52,9 @@ body {
 
 #nav a.router-link-exact-active {
   color: #bf0101;
+}
+app-footer {
+  position: absolute;
+  bottom: 0;
 }
 </style>
