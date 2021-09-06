@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <main>
     <h2>{{ currentDish.name }}</h2>
 
     <div class="dish__data">
@@ -20,7 +20,7 @@
         <h4>{{ currentDish.price }} € p.p.u.</h4>
       </div>
     </div>
-  </div>
+  </main>
 </template>
 
 <script>

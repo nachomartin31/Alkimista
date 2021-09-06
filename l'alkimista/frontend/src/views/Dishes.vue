@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <main>
     <h2>Els nostres plats</h2>
     <ul>
       <li v-for="dish in dishes" :key="dish">
@@ -8,7 +8,7 @@
         >
       </li>
     </ul>
-  </div>
+  </main>
 </template>
 
 <script>

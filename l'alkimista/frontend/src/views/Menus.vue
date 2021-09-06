@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <main>
     <h2>Els nostres menús</h2>
     <section v-for="menu in menus" :key="menu">
       <h3>{{ menu.name }}</h3>
@@ -11,7 +11,7 @@
         </li>
       </ul>
     </section>
-  </div>
+  </main>
 </template>
 
 <script>

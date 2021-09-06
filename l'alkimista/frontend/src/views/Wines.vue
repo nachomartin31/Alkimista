@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <main>
     <h2>Els nostres vins</h2>
     <ul>
       <li v-for="wine in wines" :key="wine">
@@ -8,7 +8,7 @@
         >
       </li>
     </ul>
-  </div>
+  </main>
 </template>
 
 <script>
