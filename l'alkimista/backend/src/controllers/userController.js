@@ -35,6 +35,7 @@ function login({ user }, res) {
   refreshTokens.push(refreshToken);
 
   res.json({
+    user,
     token,
     refreshToken
   });
