@@ -19,16 +19,25 @@
 </template>
 
 <script>
+/* eslint-disable import/no-unresolved */
+/* eslint-disable import/extensions */
 import { defineComponent } from "vue";
 import { mapState, mapActions } from "vuex";
+import { getUserLogged } from "../utils";
 
 export default defineComponent({
   data: () => ({
     login: "",
     password: "",
     error: false,
+    noUser: "",
   }),
-  computed: { ...mapState(["user"]) },
+  computed: {
+    ...mapState(["user"]),
+    userLogged() {
+      return getUserLogged();
+    },
+  },
   methods: {
     ...mapActions(["fetchUser"]),
     logIn() {
@@ -39,6 +48,12 @@ export default defineComponent({
         this.fetchUser({ login: this.login, password: this.password });
       }
     },
+  },
+  created() {
+    localStorage.setItem("user", JSON.stringify(this.noUser));
+  },
+  unmounted() {
+    localStorage.setItem("user", JSON.stringify(this.noUser));
   },
 });
 </script>
