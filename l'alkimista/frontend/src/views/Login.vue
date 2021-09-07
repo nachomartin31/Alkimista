@@ -2,6 +2,15 @@
   <main>
     <div v-if="user">
       <h2>{{ user.name }}</h2>
+      <select name="action" v-model="action">
+        <option selected disabled>Action</option>
+        <option>Dishes</option>
+        <option>Menus</option>
+        <option>Wines</option>
+      </select>
+      <section class="admin-content">
+        <admin-dishes :category="action"></admin-dishes>
+      </section>
       <button type="button" class="logout-button" @click="logOut">
         Logout
       </button>
@@ -29,13 +38,16 @@
 /* eslint-disable import/extensions */
 import { defineComponent } from "vue";
 import { mapState, mapActions } from "vuex";
+import AdminDishes from "../components/AdminDishes.vue";
 
 export default defineComponent({
+  components: { AdminDishes },
   data: () => ({
     login: "",
     password: "",
     error: false,
     noUser: "",
+    action: "Option",
   }),
   computed: {
     ...mapState(["user"]),
@@ -77,5 +89,11 @@ label {
   background-color: #bf0101;
   border: 2px solid #d32a2a;
   color: #fff;
+}
+.admin-content {
+  display: flex;
+  width: fit-content;
+  margin: 0 auto 2rem;
+  gap: 5rem;
 }
 </style>
