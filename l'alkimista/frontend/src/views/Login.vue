@@ -1,6 +1,10 @@
 <template>
   <main>
-    <h2 v-if="user">{{ user.name }}</h2>
+    <div v-if="user">
+      <h2>{{ user.name }}</h2>
+      <button type="button" @click="logOut">Logout</button>
+    </div>
+
     <form v-else class="login__form" @submit.prevent="logIn">
       <h2>Login</h2>
       <div>
@@ -23,7 +27,6 @@
 /* eslint-disable import/extensions */
 import { defineComponent } from "vue";
 import { mapState, mapActions } from "vuex";
-import { getUserLogged } from "../utils";
 
 export default defineComponent({
   data: () => ({
@@ -34,9 +37,6 @@ export default defineComponent({
   }),
   computed: {
     ...mapState(["user"]),
-    userLogged() {
-      return getUserLogged();
-    },
   },
   methods: {
     ...mapActions(["fetchUser"]),
@@ -48,12 +48,10 @@ export default defineComponent({
         this.fetchUser({ login: this.login, password: this.password });
       }
     },
-  },
-  created() {
-    localStorage.setItem("user", JSON.stringify(this.noUser));
-  },
-  unmounted() {
-    localStorage.setItem("user", JSON.stringify(this.noUser));
+    logOut() {
+      localStorage.setItem("user", JSON.stringify(this.noUser));
+      this.$router.push({ name: "Home" });
+    },
   },
 });
 </script>

@@ -47,8 +47,8 @@ const routes: Array<RouteRecordRaw> = [
     component: WinesDetails,
   },
   {
-    path: "/login",
-    name: "Login",
+    path: "/admin",
+    name: "Admin",
     component: Login,
   },
 ];
