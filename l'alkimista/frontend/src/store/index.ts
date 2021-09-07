@@ -12,7 +12,7 @@ export default createStore({
     wines: [],
     currentDish: {},
     currentWine: {},
-    user: JSON.parse(localStorage.getItem("user") || "") || "",
+    user: localStorage.getItem("user") ? JSON.parse(localStorage.getItem("user") || "") : "",
     token: "",
   },
   getters: {
