@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <main>
     <h3>{{ currentWine.name }}</h3>
 
     <div class="wine__data">
@@ -24,7 +24,7 @@
         </h4>
       </div>
     </div>
-  </div>
+  </main>
 </template>
 
 <script>

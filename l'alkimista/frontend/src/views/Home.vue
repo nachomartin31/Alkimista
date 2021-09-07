@@ -1,5 +1,5 @@
 <template>
-  <div class="home">
+  <main class="home">
     <h1>L'Alkimista</h1>
     <p class="home__description">
       Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis euismod
@@ -32,7 +32,7 @@
         <p>+34 686 320 566</p>
       </article>
     </section>
-  </div>
+  </main>
 </template>
 
 <script lang="ts">

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <main>
     <h2>Reservar</h2>
     <form action="">
       <label>Nom</label>
@@ -18,7 +18,7 @@
         <option value="3">3</option>
       </select>
     </form>
-  </div>
+  </main>
 </template>
 <style scoped>
 form {
