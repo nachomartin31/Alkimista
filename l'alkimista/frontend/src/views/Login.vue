@@ -2,7 +2,9 @@
   <main>
     <div v-if="user">
       <h2>{{ user.name }}</h2>
-      <button type="button" @click="logOut">Logout</button>
+      <button type="button" class="logout-button" @click="logOut">
+        Logout
+      </button>
     </div>
 
     <form v-else class="login__form" @submit.prevent="logIn">
@@ -67,7 +69,8 @@ label {
   flex-direction: column;
   gap: 1rem;
 }
-.login__submit {
+.login__submit,
+.logout-button {
   margin: 0 auto;
   width: fit-content;
   padding: 0.1rem 0.4rem;
