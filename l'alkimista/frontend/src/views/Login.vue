@@ -7,7 +7,7 @@
           Logout
         </button>
       </div>
-      <select name="action" v-model="action">
+      <select name="action" v-model="action" @change="changeCategory">
         <option selected disabled>Category</option>
         <option>Dishes</option>
         <option>Menus</option>
@@ -42,7 +42,7 @@
 /* eslint-disable import/no-unresolved */
 /* eslint-disable import/extensions */
 import { defineComponent } from "vue";
-import { mapState, mapActions } from "vuex";
+import { mapState, mapActions, mapGetters } from "vuex";
 import AdminContent from "../components/AdminContent.vue";
 
 export default defineComponent({
@@ -57,8 +57,16 @@ export default defineComponent({
   computed: {
     ...mapState(["user"]),
   },
+
   methods: {
-    ...mapActions(["fetchUser"]),
+    ...mapGetters(["setCurrentCategory"]),
+    ...mapActions([
+      "fetchDishesFromApi",
+      "fetchMenusFromApi",
+      "fetchWinesFromApi",
+      "fetchUser",
+      "setCategory",
+    ]),
     logIn() {
       if (!this.login || !this.password) {
         this.error = true;
@@ -71,6 +79,15 @@ export default defineComponent({
       localStorage.setItem("user", JSON.stringify(this.noUser));
       this.$router.push({ name: "Home" });
     },
+    changeCategory() {
+      this.setCategory(this.action);
+      this.setCurrentCategory();
+    },
+  },
+  mounted() {
+    this.fetchDishesFromApi();
+    this.fetchMenusFromApi();
+    this.fetchWinesFromApi();
   },
 });
 </script>
