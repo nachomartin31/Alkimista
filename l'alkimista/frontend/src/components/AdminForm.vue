@@ -14,13 +14,13 @@
         </div>
       </div>
       <div v-if="action === 'Update' || action === 'Delete'">
-        <label for="category">Select:</label>
+        <select name="" id="">
+          <option v-for="element in currentState" :key="element">
+            {{ element.name }}
+          </option>
+        </select>
       </div>
-      <select name="" id="">
-        <option v-for="element in currentState" :key="element">
-          {{ element.name }}
-        </option>
-      </select>
+
       <button type="submit" class="form-submit">Send</button>
     </form>
   </section>
