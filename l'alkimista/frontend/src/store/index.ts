@@ -12,11 +12,14 @@ export default createStore({
     wines: [],
     currentDish: {},
     currentWine: {},
-    user: JSON.parse(localStorage.getItem("user") || "") || "",
+    user: localStorage.getItem("user") ? JSON.parse(localStorage.getItem("user") || "") : "",
     token: "",
+    currentState: [],
   },
   getters: {
-
+    setCurrentCategory(state: State) {
+      return state.currentState;
+    },
   },
   mutations: {
     loadDishes(state: State, payload) {
@@ -37,6 +40,25 @@ export default createStore({
     loadUser(state: State, payload) {
       state.token = payload.token;
       state.user = payload.user;
+    },
+    getCurrentCategory(state, currentCategory) {
+      let getState;
+      switch (currentCategory.toLowerCase()) {
+        case "dishes":
+          getState = state.dishes;
+          break;
+        case "menus":
+          getState = state.menus;
+
+          break;
+        case "wines":
+          getState = state.wines;
+
+          break;
+        default:
+          break;
+      }
+      state.currentState = getState;
     },
   },
   actions: {
@@ -72,6 +94,9 @@ export default createStore({
 
         commit("loadUser", { token: data.token, user: data.user });
       }
+    },
+    setCategory({ commit }, category) {
+      commit("getCurrentCategory", category);
     },
   },
   modules: {

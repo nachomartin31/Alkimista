@@ -5,7 +5,8 @@ interface State {
     currentDish: object,
     currentWine: object,
     user: object | string,
-    token: string
+    token: string,
+    currentState: any
 }
 
 export default State;
