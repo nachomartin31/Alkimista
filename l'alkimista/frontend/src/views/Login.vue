@@ -1,7 +1,12 @@
 <template>
   <main>
     <div v-if="user">
-      <h2>{{ user.name }}</h2>
+      <div class="profile">
+        <h2>{{ user.name }}</h2>
+        <button type="button" class="logout-button" @click="logOut">
+          Logout
+        </button>
+      </div>
       <select name="action" v-model="action">
         <option selected disabled>Category</option>
         <option>Dishes</option>
@@ -9,11 +14,11 @@
         <option>Wines</option>
       </select>
       <section class="admin-content">
-        <admin-content :category="action"></admin-content>
+        <admin-content
+          v-if="action !== 'Category'"
+          :category="action"
+        ></admin-content>
       </section>
-      <button type="button" class="logout-button" @click="logOut">
-        Logout
-      </button>
     </div>
 
     <form v-else class="login__form" @submit.prevent="logIn">
@@ -75,6 +80,15 @@ label {
   color: #bf0101;
   margin-right: 0.5rem;
 }
+
+.profile {
+  margin: 2rem auto 2.5rem;
+  display: flex;
+  width: fit-content;
+  gap: 3rem;
+  align-items: center;
+}
+
 .login__form {
   margin-top: 3rem;
   display: flex;
@@ -89,6 +103,9 @@ label {
   background-color: #bf0101;
   border: 2px solid #d32a2a;
   color: #fff;
+}
+.logout-button {
+  height: fit-content;
 }
 .admin-content {
   display: flex;
