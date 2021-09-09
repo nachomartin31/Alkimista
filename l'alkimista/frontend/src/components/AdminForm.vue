@@ -22,7 +22,7 @@
 
 <script>
 import { mapState } from "vuex";
-import CreateForm from "./CreateForm.vue";
+import CreateForm from "./CreateForm/CreateForm.vue";
 
 export default {
   data: () => {},
@@ -38,12 +38,9 @@ export default {
     action: String,
     category: String,
   },
-  mounted() {
-    console.log(this.currentState);
-  },
 };
 </script>
-<style scoped>
+<style >
 .wines__create-form {
   display: flex;
   flex-direction: column;
