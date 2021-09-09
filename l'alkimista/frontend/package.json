@@ -15,6 +15,7 @@
     "js-cookie": "^3.0.1",
     "vue": "^3.0.0",
     "vue-cookies-ts": "^1.5.19",
+    "vue-dk-toast": "^2.2.1",
     "vue-router": "^4.0.0-0",
     "vue3-burger-menu": "^1.1.1",
     "vuex": "^4.0.0-0"

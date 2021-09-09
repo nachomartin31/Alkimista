@@ -26,6 +26,7 @@
 
 <script>
 import { mapActions, mapState } from "vuex";
+
 import CreateForm from "./CreateForm/CreateForm.vue";
 import UpdateForm from "./UpdateForm/UpdateForm.vue";
 
@@ -41,8 +42,12 @@ export default {
   methods: {
     ...mapActions(["sendDataToBackend"]),
     submitData() {
-      console.log(this.dataToSend);
-      this.sendDataToBackend(this.dataToSend);
+      if (Object.entries(this.dataToSend).length > 0) {
+        this.sendDataToBackend(this.dataToSend);
+        this.$toast("Data was sent correctly");
+      } else {
+        this.$toast("Please, confirm your choises");
+      }
     },
   },
   props: {
