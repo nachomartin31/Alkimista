@@ -2,17 +2,11 @@
   <section class="wines">
     <form @submit.prevent class="wines__create-form">
       <h4>{{ action }}:</h4>
-
-      <div v-if="action === 'Create'" class="form__create">
-        <div>
-          <label for="name">Name:</label>
-          <input type="text" name="name" />
-        </div>
-        <div v-if="category === 'Dishes'">
-          <label for="category">Category:</label>
-          <input type="text" name="category" />
-        </div>
-      </div>
+      <create-form
+        v-if="action === 'Create'"
+        :category="category"
+        :action="action"
+      ></create-form>
       <div v-if="action === 'Update' || action === 'Delete'">
         <select name="" id="">
           <option v-for="element in currentState" :key="element">
@@ -28,12 +22,17 @@
 
 <script>
 import { mapState } from "vuex";
+import CreateForm from "./CreateForm.vue";
 
 export default {
   data: () => {},
   computed: {
     ...mapState(["dishes", "menus", "wines", "currentState"]),
   },
+  components: {
+    CreateForm,
+  },
+
   methods: {},
   props: {
     action: String,

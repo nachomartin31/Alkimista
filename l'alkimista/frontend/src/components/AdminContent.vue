@@ -20,11 +20,6 @@ export default {
     return { action: "Action" };
   },
 
-  methods: {
-    print() {
-      console.log(this.action);
-    },
-  },
   component: {
     AdminForm,
   },
