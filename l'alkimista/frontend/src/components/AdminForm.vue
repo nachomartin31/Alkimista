@@ -1,18 +1,12 @@
 <template>
   <section class="wines">
-    <form @submit.prevent class="wines__create-form">
+    <form @submit.prevent="submitData" class="wines__create-form">
       <h4>{{ action }}:</h4>
-
-      <div v-if="action === 'Create'" class="form__create">
-        <div>
-          <label for="name">Name:</label>
-          <input type="text" name="name" />
-        </div>
-        <div v-if="category === 'Dishes'">
-          <label for="category">Category:</label>
-          <input type="text" name="category" />
-        </div>
-      </div>
+      <create-form
+        v-if="action === 'Create'"
+        :category="category"
+        :action="action"
+      ></create-form>
       <div v-if="action === 'Update' || action === 'Delete'">
         <select name="" id="">
           <option v-for="element in currentState" :key="element">
@@ -20,31 +14,49 @@
           </option>
         </select>
       </div>
-
+      <update-form
+        v-if="action === 'Update'"
+        :category="category"
+        :action="action"
+      ></update-form>
       <button type="submit" class="form-submit">Send</button>
     </form>
   </section>
 </template>
 
 <script>
-import { mapState } from "vuex";
+import { mapActions, mapState } from "vuex";
+
+import CreateForm from "./CreateForm/CreateForm.vue";
+import UpdateForm from "./UpdateForm/UpdateForm.vue";
 
 export default {
-  data: () => {},
   computed: {
-    ...mapState(["dishes", "menus", "wines", "currentState"]),
+    ...mapState(["dishes", "menus", "wines", "currentState", "dataToSend"]),
   },
-  methods: {},
+  components: {
+    CreateForm,
+    UpdateForm,
+  },
+
+  methods: {
+    ...mapActions(["sendDataToBackend"]),
+    submitData() {
+      if (Object.entries(this.dataToSend).length > 0) {
+        this.sendDataToBackend(this.dataToSend);
+        this.$toast("Data was sent correctly");
+      } else {
+        this.$toast("Please, confirm your choises");
+      }
+    },
+  },
   props: {
     action: String,
     category: String,
   },
-  mounted() {
-    console.log(this.currentState);
-  },
 };
 </script>
-<style scoped>
+<style >
 .wines__create-form {
   display: flex;
   flex-direction: column;

@@ -2,7 +2,7 @@
   <main>
     <div v-if="user">
       <div class="profile">
-        <h2>{{ user.name }}</h2>
+        <h2>{{ user }}</h2>
         <button type="button" class="logout-button" @click="logOut">
           Logout
         </button>

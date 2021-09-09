@@ -15,6 +15,7 @@ export default createStore({
     user: localStorage.getItem("user") ? JSON.parse(localStorage.getItem("user") || "") : "",
     token: "",
     currentState: [],
+    dataToSend: {},
   },
   getters: {
     setCurrentCategory(state: State) {
@@ -41,7 +42,7 @@ export default createStore({
       state.token = payload.token;
       state.user = payload.user;
     },
-    getCurrentCategory(state, currentCategory) {
+    getCurrentCategory(state: State, currentCategory) {
       let getState;
       switch (currentCategory.toLowerCase()) {
         case "dishes":
@@ -60,11 +61,13 @@ export default createStore({
       }
       state.currentState = getState;
     },
+    setDataState(state, data) {
+      state.dataToSend = data;
+    },
   },
   actions: {
     async fetchDishesFromApi({ commit }) {
       const { data } = await axios.get("http://localhost:5001/api/dishes/");
-
       commit("loadDishes", data);
     },
     async fetchMenusFromApi({ commit }) {
@@ -90,14 +93,23 @@ export default createStore({
     async fetchUser({ commit }, user: object) {
       if (user) {
         const { data } = await axios.post("http://localhost:5001/api/users/login", user);
-        localStorage.setItem("user", JSON.stringify(data.user));
+        localStorage.setItem("user", JSON.stringify(data.user.name));
 
-        commit("loadUser", { token: data.token, user: data.user });
+        commit("loadUser", { token: data.token, user: data.user.name });
       }
     },
     setCategory({ commit }, category) {
       commit("getCurrentCategory", category);
     },
+    setDataToSend({ commit }, data: object) {
+      commit("setDataState", data);
+    },
+    async sendDataToBackend({ commit, dispatch }, data) {
+      await axios.post("http://localhost:5001/api/dishes", data);
+      dispatch("fetchDishesFromApi");
+      commit("loadDishes", data);
+    },
+
   },
   modules: {
   },
