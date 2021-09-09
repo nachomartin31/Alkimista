@@ -93,9 +93,9 @@ export default createStore({
     async fetchUser({ commit }, user: object) {
       if (user) {
         const { data } = await axios.post("http://localhost:5001/api/users/login", user);
-        localStorage.setItem("user", JSON.stringify(data.user));
+        localStorage.setItem("user", JSON.stringify(data.user.name));
 
-        commit("loadUser", { token: data.token, user: data.user });
+        commit("loadUser", { token: data.token, user: data.user.name });
       }
     },
     setCategory({ commit }, category) {
