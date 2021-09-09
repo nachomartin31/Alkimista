@@ -14,6 +14,11 @@
           </option>
         </select>
       </div>
+      <update-form
+        v-if="action === 'Update'"
+        :category="category"
+        :action="action"
+      ></update-form>
 
       <button type="submit" class="form-submit">Send</button>
     </form>
@@ -23,6 +28,7 @@
 <script>
 import { mapState } from "vuex";
 import CreateForm from "./CreateForm/CreateForm.vue";
+import UpdateForm from "./UpdateForm/UpdateForm.vue";
 
 export default {
   data: () => {},
@@ -31,6 +37,7 @@ export default {
   },
   components: {
     CreateForm,
+    UpdateForm,
   },
 
   methods: {},
