@@ -1,9 +1,5 @@
 <template>
   <div class="form__create">
-    <div>
-      <label for="name">Name:</label>
-      <input type="text" name="name" />
-    </div>
     <create-dishes
       class="form__create"
       v-if="category === 'Dishes'"
