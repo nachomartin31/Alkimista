@@ -2,31 +2,56 @@
   <div>
     <div>
       <label for="name">Name:</label>
-      <input type="text" name="name" v-model="name" />
+      <input type="text" name="name" v-model="name" autocomplete="off" />
     </div>
     <div>
       <label for="category">Category:</label>
-      <input type="text" name="category" v-model="category" />
+      <input
+        type="text"
+        name="category"
+        autocomplete="off"
+        v-model="category"
+      />
     </div>
     <div>
       <label for="image">Image:</label>
-      <input type="file" name="image" />
+      <input type="file" name="image" autocomplete="off" />
     </div>
     <div>
       <label for="descriptionCat">Description in catalan:</label>
-      <input type="text" name="descriptionCat" v-model="descriptionCat" />
+      <input
+        type="text"
+        name="descriptionCat"
+        autocomplete="off"
+        v-model="descriptionCat"
+      />
     </div>
     <div>
       <label for="descriptionSpa">Description in spanish:</label>
-      <input type="text" name="descriptionSpa" v-model="descriptionSpa" />
+      <input
+        type="text"
+        name="descriptionSpa"
+        autocomplete="off"
+        v-model="descriptionSpa"
+      />
     </div>
     <div>
       <label for="ingredientsCat">Ingredients in catalan:</label>
-      <input type="text" name="ingredentsCat" v-model="ingredientsCat" />
+      <input
+        type="text"
+        name="ingredentsCat"
+        autocomplete="off"
+        v-model="ingredientsCat"
+      />
     </div>
     <div>
       <label for="ingredientsSpa">Ingredients in spanish:</label>
-      <input type="text" name="ingredentsSpa" v-model="ingredientsSpa" />
+      <input
+        type="text"
+        name="ingredentsSpa"
+        autocomplete="off"
+        v-model="ingredientsSpa"
+      />
     </div>
     <div>
       <label for="tags">Preferences:</label>
