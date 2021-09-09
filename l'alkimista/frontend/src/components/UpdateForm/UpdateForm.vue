@@ -1,11 +1,11 @@
 <template>
-  <div class="form__update">
+  <div class="update__form">
     <update-dishes
-      class="form__update"
+      class="update__form"
       v-if="category === 'Dishes'"
     ></update-dishes>
-    <update-menu class="form__update" v-if="category === 'Menus'"></update-menu>
-    <update-wine class="form__update" v-if="category === 'Wines'"></update-wine>
+    <update-menu class="update__form" v-if="category === 'Menus'"></update-menu>
+    <update-wine class="update__form" v-if="category === 'Wines'"></update-wine>
   </div>
 </template>
 <script>
@@ -26,7 +26,7 @@ export default {
 };
 </script>
 <style>
-.update {
-  gap: 0.7rem;
+.update__form {
+  gap: 0.5rem;
 }
 </style>
