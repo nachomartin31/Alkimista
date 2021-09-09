@@ -41,10 +41,20 @@
     </div>
     <label for="price">Price</label>
     <input type="text" v-model="price" />
-    <button type="button" @click="printData">Confirm</button>
+    <div>
+      <label for="confirm">Confirm</label>
+      <input
+        type="checkbox"
+        name="confirm"
+        v-model="confirm"
+        @change="consolameEsta"
+      />
+    </div>
   </div>
 </template>
 <script>
+import { mapActions } from "vuex";
+
 export default {
   data: () => ({
     name: "",
@@ -56,8 +66,10 @@ export default {
     ingredientsSpa: "",
     tags: [],
     price: "",
+    confirm: false,
   }),
   methods: {
+    ...mapActions(["setDataToSend"]),
     createDishesObjectToSend() {
       const data = {
         name: this.name,
@@ -65,15 +77,20 @@ export default {
         image: this.image,
         descriptionCat: this.descriptionCat,
         descriptionSpa: this.descriptionSpa,
-        ingredientsCat: this.ingredientsCat,
-        ingredientsSpa: this.ingredientsSpa,
+        ingredientsCat: this.ingredientsCat.split(","),
+        ingredientsSpa: this.ingredientsSpa.split(", "),
         tags: this.tags,
         price: parseFloat(this.price),
       };
       return data;
     },
-    printData() {
-      console.log(this.createDishesObjectToSend());
+
+    consolameEsta() {
+      if (this.confirm) {
+        this.setDataToSend(this.createDishesObjectToSend());
+      } else {
+        this.setDataToSend({});
+      }
     },
   },
 };

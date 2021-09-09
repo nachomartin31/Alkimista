@@ -1,6 +1,6 @@
 <template>
   <section class="wines">
-    <form @submit.prevent class="wines__create-form">
+    <form @submit.prevent="submitData" class="wines__create-form">
       <h4>{{ action }}:</h4>
       <create-form
         v-if="action === 'Create'"
@@ -19,28 +19,32 @@
         :category="category"
         :action="action"
       ></update-form>
-
       <button type="submit" class="form-submit">Send</button>
     </form>
   </section>
 </template>
 
 <script>
-import { mapState } from "vuex";
+import { mapActions, mapState } from "vuex";
 import CreateForm from "./CreateForm/CreateForm.vue";
 import UpdateForm from "./UpdateForm/UpdateForm.vue";
 
 export default {
-  data: () => {},
   computed: {
-    ...mapState(["dishes", "menus", "wines", "currentState"]),
+    ...mapState(["dishes", "menus", "wines", "currentState", "dataToSend"]),
   },
   components: {
     CreateForm,
     UpdateForm,
   },
 
-  methods: {},
+  methods: {
+    ...mapActions(["sendDataToBackend"]),
+    submitData() {
+      console.log(this.dataToSend);
+      this.sendDataToBackend(this.dataToSend);
+    },
+  },
   props: {
     action: String,
     category: String,

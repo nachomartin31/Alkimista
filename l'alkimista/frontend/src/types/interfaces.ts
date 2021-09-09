@@ -6,7 +6,8 @@ interface State {
     currentWine: object,
     user: object | string,
     token: string,
-    currentState: any
+    currentState: any,
+    dataToSend: object,
 }
 
 export default State;
