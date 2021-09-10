@@ -1,8 +1,8 @@
 <template>
-  <section class="wines">
+  <section class="form">
     <form
       @submit.prevent="submitData({ category, action })"
-      class="wines__create-form"
+      class="form__create-form"
     >
       <h4>{{ action }}:</h4>
       <create-form
@@ -75,7 +75,13 @@ export default {
 };
 </script>
 <style >
-.wines__create-form {
+.form {
+  gap: 0.7rem;
+  padding: 1rem;
+  border: 5px double #bf0101;
+  border-radius: 1rem;
+}
+.form__create-form {
   display: flex;
   flex-direction: column;
   gap: 0.3rem;

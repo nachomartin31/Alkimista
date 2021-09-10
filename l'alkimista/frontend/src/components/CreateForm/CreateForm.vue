@@ -35,10 +35,4 @@ export default {
 };
 </script>
 <style scoped>
-.form__create {
-  gap: 0.7rem;
-  padding: 1rem;
-  border: 5px double #bf0101;
-  border-radius: 1rem;
-}
 </style>

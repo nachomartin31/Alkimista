@@ -2,19 +2,19 @@
   <div>
     <div>
       <label for="name">Name</label>
-      <input type="text" name="name" />
+      <input type="text" name="name" v-model="name" />
     </div>
     <div>
-      <label for="cellar">Cellar</label>
-      <input type="text" name="cellar" />
+      <label for="winery">Winery</label>
+      <input v-model="winery" type="text" name="winery" />
     </div>
     <div>
       <label for="type">Type</label>
-      <input type="text" name="type" />
+      <input v-model="type" type="text" name="type" />
     </div>
     <div>
       <label for="year">Year</label>
-      <input type="text" name="year" />
+      <input v-model="year" type="text" name="year" />
     </div>
     <div>
       <label for="image">Image</label>
@@ -22,19 +22,19 @@
     </div>
     <div>
       <label for="DO">DO</label>
-      <input type="text" name="DO" />
+      <input v-model="DO" type="text" name="DO" />
     </div>
     <div>
       <label for="grapeTypes">Grapes</label>
-      <input type="text" name="grapeTypes" />
+      <input v-model="grapes" type="text" name="grapeTypes" />
     </div>
     <div>
       <label for="bottlePrice">Price for bottle</label>
-      <input type="text" name="bottlePrice" />
+      <input v-model="bottlePrice" type="text" name="bottlePrice" />
     </div>
     <div>
       <label for="glassPrice">Price for glass</label>
-      <input type="text" name="glassPrice" />
+      <input v-model="glassPrice" type="text" name="glassPrice" />
     </div>
     <div>
       <label for="confirm">Confirm</label>
@@ -54,11 +54,11 @@ import { mapState, mapActions } from "vuex";
 export default {
   data: () => ({
     name: "",
-    image: "",
-    cellar: "",
+    image: null,
+    winery: "",
     type: "",
     year: "",
-    grapes: [],
+    grapes: "",
     DO: "",
     bottlePrice: 0,
     glassPrice: 0,
@@ -72,7 +72,7 @@ export default {
     createDishesObjectToSend() {
       const data = {
         name: this.name,
-        cellar: this.cellar,
+        winery: this.winery,
         image: this.image,
         type: this.type,
         year: this.year,

@@ -55,5 +55,6 @@ h4 {
   background-color: #bf0101;
   border: none;
   border-radius: 0.3rem;
+  margin-bottom: 2rem;
 }
 </style>

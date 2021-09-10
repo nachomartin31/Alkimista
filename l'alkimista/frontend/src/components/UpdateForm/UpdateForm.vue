@@ -1,5 +1,5 @@
 <template>
-  <div class="update__form">
+  <div>
     <update-dishes
       :action="action"
       class="update__form"
@@ -34,8 +34,3 @@ export default {
   },
 };
 </script>
-<style>
-.update__form {
-  gap: 0.5rem;
-}
-</style>
