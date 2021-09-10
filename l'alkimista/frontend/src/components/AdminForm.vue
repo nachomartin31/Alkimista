@@ -8,8 +8,15 @@
         :action="action"
       ></create-form>
       <div v-if="action === 'Update' || action === 'Delete'">
-        <select name="" id="">
-          <option v-for="element in currentState" :key="element">
+        <select
+          v-model="currentElement"
+          @change="changeCurrentElement(category, currentElement._id)"
+        >
+          <option
+            v-for="element in currentState"
+            :value="element"
+            :key="element"
+          >
             {{ element.name }}
           </option>
         </select>
@@ -31,6 +38,9 @@ import CreateForm from "./CreateForm/CreateForm.vue";
 import UpdateForm from "./UpdateForm/UpdateForm.vue";
 
 export default {
+  data: () => ({
+    currentElement: "",
+  }),
   computed: {
     ...mapState(["dishes", "menus", "wines", "currentState", "dataToSend"]),
   },
@@ -40,7 +50,7 @@ export default {
   },
 
   methods: {
-    ...mapActions(["sendDataToBackend"]),
+    ...mapActions(["sendDataToBackend", "stageCurrentElement"]),
     submitData() {
       if (Object.entries(this.dataToSend).length > 0) {
         this.sendDataToBackend(this.dataToSend);
@@ -48,6 +58,11 @@ export default {
       } else {
         this.$toast("Please, confirm your choises");
       }
+    },
+    changeCurrentElement(category, value) {
+      const lowerCaseCategory = category.toLowerCase();
+      const url = `http://localhost:5001/api/${lowerCaseCategory}/${value}`;
+      this.stageCurrentElement(url);
     },
   },
   props: {

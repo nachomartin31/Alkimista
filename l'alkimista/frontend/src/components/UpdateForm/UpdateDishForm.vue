@@ -2,11 +2,7 @@
   <div>
     <div>
       <label for="name">Name:</label>
-      <input type="text" name="name" />
-    </div>
-    <div>
-      <label for="category">Category:</label>
-      <input type="text" name="category" />
+      <input type="text" name="name" v-model="name" />
     </div>
     <div>
       <label for="image">Image:</label>
@@ -41,5 +37,62 @@
     </div>
     <label for="price">Price</label>
     <input type="text" />
+    <div>
+      <label for="confirm">Confirm</label>
+      <input
+        type="checkbox"
+        name="confirm"
+        v-model="confirm"
+        @change="setDataAtStore"
+      />
+    </div>
+    <p v-if="action === 'Update'">Si</p>
+    <p v-else>No</p>
   </div>
 </template>
+<script>
+import { mapActions, mapState } from "vuex";
+
+export default {
+  computed: {
+    ...mapState(["currentObject"]),
+  },
+  data: () => ({
+    name: "",
+    image: "",
+    descriptionCat: "",
+    descriptionSpa: "",
+    ingredientsCat: [],
+    ingredientsSpa: [],
+    tags: [],
+    price: 0,
+    confirm: false,
+  }),
+
+  methods: {
+    ...mapActions(["setDataToSend"]),
+    createDishesObjectToSend() {
+      const data = {
+        name: this.name,
+        category: this.category,
+        image: this.image,
+        descriptionCat: this.descriptionCat,
+        descriptionSpa: this.descriptionSpa,
+        ingredientsCat: this.ingredientsCat.split(","),
+        ingredientsSpa: this.ingredientsSpa.split(", "),
+        tags: this.tags,
+        price: parseFloat(this.price),
+      };
+      return data;
+    },
+
+    setDataAtStore() {
+      if (this.confirm) {
+        this.setDataToSend(this.createDishesObjectToSend());
+      } else {
+        this.setDataToSend({});
+      }
+    },
+  },
+};
+</script>
