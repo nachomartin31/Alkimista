@@ -1,11 +1,20 @@
 <template>
-  <div class="form__create">
+  <div>
     <create-dishes
+      :category="category"
       class="form__create"
       v-if="category === 'Dishes'"
     ></create-dishes>
-    <create-menu class="form__create" v-if="category === 'Menus'"></create-menu>
-    <create-wine class="form__create" v-if="category === 'Wines'"></create-wine>
+    <create-menu
+      :category="category"
+      class="form__create"
+      v-if="category === 'Menus'"
+    ></create-menu>
+    <create-wine
+      :category="category"
+      class="form__create"
+      v-if="category === 'Wines'"
+    ></create-wine>
   </div>
 </template>
 <script>
@@ -25,8 +34,11 @@ export default {
   },
 };
 </script>
-<style>
+<style scoped>
 .form__create {
   gap: 0.7rem;
+  padding: 1rem;
+  border: 5px double #bf0101;
+  border-radius: 1rem;
 }
 </style>

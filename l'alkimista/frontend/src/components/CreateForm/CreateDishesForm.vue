@@ -5,17 +5,8 @@
       <input type="text" name="name" v-model="name" autocomplete="off" />
     </div>
     <div>
-      <label for="category">Category:</label>
-      <input
-        type="text"
-        name="category"
-        autocomplete="off"
-        v-model="category"
-      />
-    </div>
-    <div>
       <label for="image">Image:</label>
-      <input type="file" name="image" autocomplete="off" />
+      <input type="file" accept="image/*" name="image" autocomplete="off" />
     </div>
     <div>
       <label for="descriptionCat">Description in catalan:</label>
@@ -72,18 +63,18 @@
         type="checkbox"
         name="confirm"
         v-model="confirm"
-        @change="consolameEsta"
+        @change="setDataAtStore"
       />
     </div>
   </div>
 </template>
 <script>
 import { mapActions } from "vuex";
+// import { storage } from "../../firebase";
 
 export default {
   data: () => ({
     name: "",
-    category: "",
     image: "",
     descriptionCat: "",
     descriptionSpa: "",
@@ -109,14 +100,16 @@ export default {
       };
       return data;
     },
-
-    consolameEsta() {
+    setDataAtStore() {
       if (this.confirm) {
         this.setDataToSend(this.createDishesObjectToSend());
       } else {
         this.setDataToSend({});
       }
     },
+  },
+  props: {
+    category: String,
   },
 };
 </script>

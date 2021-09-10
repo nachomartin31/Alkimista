@@ -1,11 +1,20 @@
 <template>
   <div class="update__form">
     <update-dishes
+      :action="action"
       class="update__form"
       v-if="category === 'Dishes'"
     ></update-dishes>
-    <update-menu class="update__form" v-if="category === 'Menus'"></update-menu>
-    <update-wine class="update__form" v-if="category === 'Wines'"></update-wine>
+    <update-menu
+      :action="action"
+      class="update__form"
+      v-if="category === 'Menus'"
+    ></update-menu>
+    <update-wine
+      :action="action"
+      class="update__form"
+      v-if="category === 'Wines'"
+    ></update-wine>
   </div>
 </template>
 <script>

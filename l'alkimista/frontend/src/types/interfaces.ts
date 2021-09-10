@@ -8,6 +8,7 @@ interface State {
     token: string,
     currentState: any,
     dataToSend: object,
+    currentElement: object
 }
 
 export default State;

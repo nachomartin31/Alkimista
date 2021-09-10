@@ -1,6 +1,10 @@
 <template>
   <div>
     <div>
+      <label for="name">Name</label>
+      <input type="text" name="name" />
+    </div>
+    <div>
       <label for="cellar">Cellar</label>
       <input type="text" name="cellar" />
     </div>
@@ -32,5 +36,60 @@
       <label for="glassPrice">Price for glass</label>
       <input type="text" name="glassPrice" />
     </div>
+    <div>
+      <label for="confirm">Confirm</label>
+      <input
+        type="checkbox"
+        name="confirm"
+        v-model="confirm"
+        @change="setDataAtStore"
+      />
+    </div>
   </div>
 </template>
+
+<script>
+import { mapState, mapActions } from "vuex";
+
+export default {
+  data: () => ({
+    name: "",
+    image: "",
+    cellar: "",
+    type: "",
+    year: "",
+    grapes: [],
+    DO: "",
+    bottlePrice: 0,
+    glassPrice: 0,
+    confirm: false,
+  }),
+  computed: {
+    ...mapState(["dishes"]),
+  },
+  methods: {
+    ...mapActions(["setDataToSend"]),
+    createDishesObjectToSend() {
+      const data = {
+        name: this.name,
+        cellar: this.cellar,
+        image: this.image,
+        type: this.type,
+        year: this.year,
+        grapes: this.grapes.split(","),
+        DO: this.DO,
+        bottlePrice: parseFloat(this.bottlePrice),
+        glassPrice: parseFloat(this.glassPrice),
+      };
+      return data;
+    },
+    setDataAtStore() {
+      if (this.confirm) {
+        this.setDataToSend(this.createDishesObjectToSend());
+      } else {
+        this.setDataToSend({});
+      }
+    },
+  },
+};
+</script>

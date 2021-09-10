@@ -1,7 +1,7 @@
 <template>
   <section class="dishes">
     <h3>{{ category }}</h3>
-    <select name="action" v-model="action">
+    <select name="action" v-model="action" class="selection">
       <option selected disabled>Action</option>
       <option>Create</option>
       <option>Update</option>
@@ -12,6 +12,7 @@
 </template>
 
 <script>
+import { mapActions } from "vuex";
 import AdminForm from "./AdminForm.vue";
 
 export default {
@@ -19,7 +20,9 @@ export default {
   data() {
     return { action: "Action" };
   },
-
+  methods: {
+    ...mapActions(["stageCurrentElement"]),
+  },
   component: {
     AdminForm,
   },
@@ -46,5 +49,11 @@ h4 {
   background-color: #bf0101;
   border: 2px solid #d32a2a;
   color: #fff;
+}
+.selection {
+  color: #fff;
+  background-color: #bf0101;
+  border: none;
+  border-radius: 0.3rem;
 }
 </style>

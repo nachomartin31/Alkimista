@@ -1,6 +1,9 @@
 <template>
   <section class="wines">
-    <form @submit.prevent="submitData" class="wines__create-form">
+    <form
+      @submit.prevent="submitData({ category, action })"
+      class="wines__create-form"
+    >
       <h4>{{ action }}:</h4>
       <create-form
         v-if="action === 'Create'"
@@ -51,9 +54,9 @@ export default {
 
   methods: {
     ...mapActions(["sendDataToBackend", "stageCurrentElement"]),
-    submitData() {
+    submitData(strategy) {
       if (Object.entries(this.dataToSend).length > 0) {
-        this.sendDataToBackend(this.dataToSend);
+        this.sendDataToBackend({ data: this.dataToSend, strategy });
         this.$toast("Data was sent correctly");
       } else {
         this.$toast("Please, confirm your choises");
