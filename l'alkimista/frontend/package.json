@@ -12,6 +12,7 @@
     "@vue/test-utils": "^2.0.0-rc.13",
     "axios": "^0.21.1",
     "core-js": "^3.6.5",
+    "crypto-js": "^4.1.1",
     "js-cookie": "^3.0.1",
     "vue": "^3.0.0",
     "vue-cookies-ts": "^1.5.19",
@@ -21,6 +22,7 @@
     "vuex": "^4.0.0-0"
   },
   "devDependencies": {
+    "@types/crypto-js": "^4.0.2",
     "@types/jest": "^24.0.19",
     "@types/js-cookie": "^2.2.7",
     "@typescript-eslint/eslint-plugin": "^4.30.0",

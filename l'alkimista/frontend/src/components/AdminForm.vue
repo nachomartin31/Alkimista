@@ -65,8 +65,6 @@ export default {
   methods: {
     ...mapActions(["sendDataToBackend", "stageCurrentElement"]),
     submitData(strategy) {
-      console.log(strategy);
-
       if (Object.entries(this.dataToSend).length > 0) {
         this.sendDataToBackend({ data: this.dataToSend, strategy });
         this.$toast("Data was sent correctly");

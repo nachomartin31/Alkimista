@@ -10,19 +10,19 @@
     </div>
     <div>
       <label for="descriptionCat">Description in catalan:</label>
-      <input type="text" name="descriptionCat" />
+      <input type="text" name="descriptionCat" v-model="descriptionCat" />
     </div>
     <div>
       <label for="descriptionSpa">Description in spanish:</label>
-      <input type="text" name="descriptionSpa" />
+      <input type="text" name="descriptionSpa" v-model="descriptionSpa" />
     </div>
     <div>
       <label for="ingredientsCat">Ingredients in catalan:</label>
-      <input type="text" name="ingredentsCat" />
+      <input type="text" name="ingredentsCat" v-model="ingredentsCat" />
     </div>
     <div>
       <label for="ingredientsSpa">Ingredients in spanish:</label>
-      <input type="text" name="ingredentsSpa" />
+      <input type="text" name="ingredentsSpa" v-model="ingredentsSpa" />
     </div>
     <div>
       <label for="tags">Preferences:</label>
@@ -36,7 +36,7 @@
       </div>
     </div>
     <label for="price">Price</label>
-    <input type="text" />
+    <input type="text" name="price" v-model="price" />
     <div>
       <label for="confirm">Confirm</label>
       <input

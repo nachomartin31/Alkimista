@@ -3,6 +3,7 @@
 /* eslint-disable no-param-reassign */
 import { createStore } from "vuex";
 import axios from "axios";
+import CryptoJS from "crypto-js";
 import State from "../types/interfaces";
 
 export default createStore({
@@ -13,7 +14,7 @@ export default createStore({
     currentDish: {},
     currentWine: {},
     user: localStorage.getItem("user") ? JSON.parse(localStorage.getItem("user") || "") : "",
-    token: "",
+    token: localStorage.getItem("token") || "",
     currentState: [],
     dataToSend: {},
     currentElementId: "",
@@ -98,6 +99,9 @@ export default createStore({
       if (user) {
         const { data } = await axios.post("http://localhost:5001/api/users/login", user);
         localStorage.setItem("user", JSON.stringify(data.user.name));
+        const encryptedToken = CryptoJS
+          .AES.encrypt(data.token, process.env.VUE_APP_SECRET).toString();
+        localStorage.setItem("token", encryptedToken);
 
         commit("loadUser", { token: data.token, user: data.user.name });
       }
@@ -112,6 +116,11 @@ export default createStore({
       data, strategy,
     }) {
       const id = strategy.currentElementId;
+      const encryptedToken: any = localStorage.getItem("token");
+      const token = CryptoJS.AES.decrypt(
+        encryptedToken,
+        process.env.VUE_APP_SECRET,
+      ).toString(CryptoJS.enc.Utf8);
       switch (strategy.category) {
         case "Dishes":
           switch (strategy.action) {
@@ -122,14 +131,13 @@ export default createStore({
 
               break;
             case "Update":
-              console.log(strategy.token);
-              await axios.put(`http://localhost:5001/api/dishes/${id}`, data, { headers: { Authorization: `Bearer ${strategy.token}` } });
+              await axios.put(`http://localhost:5001/api/dishes/${id}`, data, { headers: { Authorization: `Bearer ${token}` } });
               dispatch("fetchDishesFromApi");
               commit("loadDishes", data);
 
               break;
             case "Delete":
-              await axios.delete(`http://localhost:5001/api/dishes/${strategy.id}`, { headers: { Authorization: `Bearer ${strategy.token}` } });
+              await axios.delete(`http://localhost:5001/api/dishes/${id}`, { headers: { Authorization: `Bearer ${token}` } });
               dispatch("fetchDishesFromApi");
               commit("loadDishes", data);
 
@@ -148,13 +156,13 @@ export default createStore({
 
               break;
             case "Update":
-              await axios.put(`http://localhost:5001/api/menu/${strategy.id}`, data, { headers: { Authorization: `Bearer ${strategy.token}` } });
+              await axios.put(`http://localhost:5001/api/menu/${id}`, data, { headers: { Authorization: `Bearer ${token}` } });
               dispatch("fetchMenusFromApi");
               commit("loadMenus", data);
 
               break;
             case "Delete":
-              await axios.delete(`http://localhost:5001/api/menu/${strategy.id}`, data);
+              await axios.delete(`http://localhost:5001/api/menu/${id}`, data);
               dispatch("fetchMenusFromApi");
               commit("loadMenus", data);
 
@@ -174,7 +182,7 @@ export default createStore({
 
               break;
             case "Update":
-              await axios.put(`http://localhost:5001/api/wines/${strategy.id}`, data, { headers: { Authorization: `Bearer ${strategy.token}` } });
+              await axios.put(`http://localhost:5001/api/wines/${strategy.id}`, data, { headers: { Authorization: `Bearer ${token}` } });
               dispatch("fetchWinesFromApi");
               commit("loadWines", data);
 
