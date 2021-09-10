@@ -46,8 +46,6 @@
         @change="setDataAtStore"
       />
     </div>
-    <p v-if="action === 'Update'">Si</p>
-    <p v-else>No</p>
   </div>
 </template>
 <script>
@@ -62,8 +60,8 @@ export default {
     image: "",
     descriptionCat: "",
     descriptionSpa: "",
-    ingredientsCat: [],
-    ingredientsSpa: [],
+    ingredientsCat: "",
+    ingredientsSpa: "",
     tags: [],
     price: 0,
     confirm: false,

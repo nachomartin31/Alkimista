@@ -1,7 +1,9 @@
 <template>
   <section class="form">
     <form
-      @submit.prevent="submitData({ category, action })"
+      @submit.prevent="
+        submitData({ category, action, currentElementId, token })
+      "
       class="form__create-form"
     >
       <h4>{{ action }}:</h4>
@@ -13,7 +15,7 @@
       <div v-if="action === 'Update' || action === 'Delete'">
         <select
           v-model="currentElement"
-          @change="changeCurrentElement(category, currentElement._id)"
+          @change="changeCurrentElement(currentElement._id)"
         >
           <option
             v-for="element in currentState"
@@ -45,7 +47,15 @@ export default {
     currentElement: "",
   }),
   computed: {
-    ...mapState(["dishes", "menus", "wines", "currentState", "dataToSend"]),
+    ...mapState([
+      "dishes",
+      "menus",
+      "wines",
+      "currentState",
+      "dataToSend",
+      "currentElementId",
+      "token",
+    ]),
   },
   components: {
     CreateForm,
@@ -55,6 +65,8 @@ export default {
   methods: {
     ...mapActions(["sendDataToBackend", "stageCurrentElement"]),
     submitData(strategy) {
+      console.log(strategy);
+
       if (Object.entries(this.dataToSend).length > 0) {
         this.sendDataToBackend({ data: this.dataToSend, strategy });
         this.$toast("Data was sent correctly");
@@ -62,10 +74,8 @@ export default {
         this.$toast("Please, confirm your choises");
       }
     },
-    changeCurrentElement(category, value) {
-      const lowerCaseCategory = category.toLowerCase();
-      const url = `http://localhost:5001/api/${lowerCaseCategory}/${value}`;
-      this.stageCurrentElement(url);
+    changeCurrentElement(value) {
+      this.stageCurrentElement(value);
     },
   },
   props: {

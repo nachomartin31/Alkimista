@@ -16,7 +16,7 @@ export default createStore({
     token: "",
     currentState: [],
     dataToSend: {},
-    currentElement: {},
+    currentElementId: "",
   },
   getters: {
     setCurrentCategory(state: State) {
@@ -65,8 +65,8 @@ export default createStore({
     setDataState(state, data) {
       state.dataToSend = data;
     },
-    stageElementAsState(state, element: object) {
-      state.currentElement = element;
+    stageElementAsState(state, element) {
+      state.currentElementId = element;
     },
   },
   actions: {
@@ -108,7 +108,10 @@ export default createStore({
     setDataToSend({ commit }, data: object) {
       commit("setDataState", data);
     },
-    async sendDataToBackend({ commit, dispatch }, { data, strategy }) {
+    async sendDataToBackend({ commit, dispatch }, {
+      data, strategy,
+    }) {
+      const id = strategy.currentElementId;
       switch (strategy.category) {
         case "Dishes":
           switch (strategy.action) {
@@ -119,13 +122,14 @@ export default createStore({
 
               break;
             case "Update":
-              await axios.put("http://localhost:5001/api/dishes", data);
+              console.log(strategy.token);
+              await axios.put(`http://localhost:5001/api/dishes/${id}`, data, { headers: { Authorization: `Bearer ${strategy.token}` } });
               dispatch("fetchDishesFromApi");
               commit("loadDishes", data);
 
               break;
             case "Delete":
-              await axios.delete("http://localhost:5001/api/dishes", data);
+              await axios.delete(`http://localhost:5001/api/dishes/${strategy.id}`, { headers: { Authorization: `Bearer ${strategy.token}` } });
               dispatch("fetchDishesFromApi");
               commit("loadDishes", data);
 
@@ -144,13 +148,13 @@ export default createStore({
 
               break;
             case "Update":
-              await axios.put("http://localhost:5001/api/menu", data);
+              await axios.put(`http://localhost:5001/api/menu/${strategy.id}`, data, { headers: { Authorization: `Bearer ${strategy.token}` } });
               dispatch("fetchMenusFromApi");
               commit("loadMenus", data);
 
               break;
             case "Delete":
-              await axios.delete("http://localhost:5001/api/menu", data);
+              await axios.delete(`http://localhost:5001/api/menu/${strategy.id}`, data);
               dispatch("fetchMenusFromApi");
               commit("loadMenus", data);
 
@@ -170,13 +174,13 @@ export default createStore({
 
               break;
             case "Update":
-              await axios.put("http://localhost:5001/api/wines", data);
+              await axios.put(`http://localhost:5001/api/wines/${strategy.id}`, data, { headers: { Authorization: `Bearer ${strategy.token}` } });
               dispatch("fetchWinesFromApi");
               commit("loadWines", data);
 
               break;
             case "Delete":
-              await axios.delete("http://localhost:5001/api/wines", data);
+              await axios.delete(`http://localhost:5001/api/wines/${strategy.id}`, data);
               dispatch("fetchWinesFromApi");
               commit("loadWines", data);
 
@@ -190,10 +194,8 @@ export default createStore({
           break;
       }
     },
-    async stageCurrentElement({ commit }, url) {
-      const { data } = await axios.get(url);
-      const currentElement = data;
-      commit("stageElementAsState", currentElement);
+    async stageCurrentElement({ commit }, id) {
+      commit("stageElementAsState", id);
     },
 
   },
