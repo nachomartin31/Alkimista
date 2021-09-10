@@ -58,6 +58,7 @@ h1 {
   margin: 10rem auto 0;
   gap: 10vw;
   align-items: center;
+  padding-bottom: 3rem;
 }
 .home__contact {
   display: flex;

@@ -16,6 +16,7 @@ export default createStore({
     token: "",
     currentState: [],
     dataToSend: {},
+    currentElement: {},
   },
   getters: {
     setCurrentCategory(state: State) {
@@ -64,6 +65,9 @@ export default createStore({
     setDataState(state, data) {
       state.dataToSend = data;
     },
+    stageElementAsState(state, element: object) {
+      state.currentElement = element;
+    },
   },
   actions: {
     async fetchDishesFromApi({ commit }) {
@@ -104,13 +108,94 @@ export default createStore({
     setDataToSend({ commit }, data: object) {
       commit("setDataState", data);
     },
-    async sendDataToBackend({ commit, dispatch }, data) {
-      await axios.post("http://localhost:5001/api/dishes", data);
-      dispatch("fetchDishesFromApi");
-      commit("loadDishes", data);
+    async sendDataToBackend({ commit, dispatch }, { data, strategy }) {
+      switch (strategy.category) {
+        case "Dishes":
+          switch (strategy.action) {
+            case "Create":
+              await axios.post("http://localhost:5001/api/dishes", data);
+              dispatch("fetchDishesFromApi");
+              commit("loadDishes", data);
+
+              break;
+            case "Update":
+              await axios.put("http://localhost:5001/api/dishes", data);
+              dispatch("fetchDishesFromApi");
+              commit("loadDishes", data);
+
+              break;
+            case "Delete":
+              await axios.delete("http://localhost:5001/api/dishes", data);
+              dispatch("fetchDishesFromApi");
+              commit("loadDishes", data);
+
+              break;
+
+            default:
+              break;
+          }
+          break;
+        case "Menus":
+          switch (strategy.action) {
+            case "Create":
+              await axios.post("http://localhost:5001/api/menu", data);
+              dispatch("fetchMenusFromApi");
+              commit("loadMenus", data);
+
+              break;
+            case "Update":
+              await axios.put("http://localhost:5001/api/menu", data);
+              dispatch("fetchMenusFromApi");
+              commit("loadMenus", data);
+
+              break;
+            case "Delete":
+              await axios.delete("http://localhost:5001/api/menu", data);
+              dispatch("fetchMenusFromApi");
+              commit("loadMenus", data);
+
+              break;
+
+            default:
+              break;
+          }
+          break;
+
+        case "Wines":
+          switch (strategy.action) {
+            case "Create":
+              await axios.post("http://localhost:5001/api/wines", data);
+              dispatch("fetchWinesFromApi");
+              commit("loadWines", data);
+
+              break;
+            case "Update":
+              await axios.put("http://localhost:5001/api/wines", data);
+              dispatch("fetchWinesFromApi");
+              commit("loadWines", data);
+
+              break;
+            case "Delete":
+              await axios.delete("http://localhost:5001/api/wines", data);
+              dispatch("fetchWinesFromApi");
+              commit("loadWines", data);
+
+              break;
+
+            default:
+              break;
+          }
+          break;
+        default:
+          break;
+      }
+    },
+    async stageCurrentElement({ commit }, url) {
+      const { data } = await axios.get(url);
+      const currentElement = data;
+      commit("stageElementAsState", currentElement);
     },
 
   },
-  modules: {
-  },
+
 });

@@ -7,7 +7,12 @@
           Logout
         </button>
       </div>
-      <select name="action" v-model="action" @change="changeCategory">
+      <select
+        name="action"
+        v-model="action"
+        @change="changeCategory"
+        class="selection"
+      >
         <option selected disabled>Category</option>
         <option>Dishes</option>
         <option>Menus</option>
@@ -127,7 +132,14 @@ label {
 .admin-content {
   display: flex;
   width: fit-content;
-  margin: 0 auto 2rem;
+  margin: 0 auto;
+  padding-bottom: 5rem;
   gap: 5rem;
+}
+.selection {
+  color: #fff;
+  background-color: #bf0101;
+  border: none;
+  border-radius: 0.3rem;
 }
 </style>
