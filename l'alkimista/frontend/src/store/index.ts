@@ -106,15 +106,15 @@ export default createStore({
         commit("loadUser", { token: data.token, user: data.user.name });
       }
     },
-    setCategory({ commit }, category) {
+    setCategory({ commit }, category: string) {
       commit("getCurrentCategory", category);
     },
     setDataToSend({ commit }, data: object) {
       commit("setDataState", data);
     },
-    async sendDataToBackend({ commit, dispatch }, {
-      data, strategy,
-    }) {
+    async sendDataToBackend({ dispatch }, strategy) {
+      console.log("the data: ", strategy.dataToSend);
+      const element = strategy.dataToSend;
       const id = strategy.currentElementId;
       const encryptedToken: any = localStorage.getItem("token");
       const token = CryptoJS.AES.decrypt(
@@ -125,21 +125,18 @@ export default createStore({
         case "Dishes":
           switch (strategy.action) {
             case "Create":
-              await axios.post("http://localhost:5001/api/dishes", data);
+              await axios.post("http://localhost:5001/api/dishes/", element, { headers: { Authorization: `Bearer ${token}` } });
               dispatch("fetchDishesFromApi");
-              commit("loadDishes", data);
 
               break;
             case "Update":
-              await axios.put(`http://localhost:5001/api/dishes/${id}`, data, { headers: { Authorization: `Bearer ${token}` } });
+              await axios.put(`http://localhost:5001/api/dishes/${id}`, element, { headers: { Authorization: `Bearer ${token}` } });
               dispatch("fetchDishesFromApi");
-              commit("loadDishes", data);
 
               break;
             case "Delete":
               await axios.delete(`http://localhost:5001/api/dishes/${id}`, { headers: { Authorization: `Bearer ${token}` } });
               dispatch("fetchDishesFromApi");
-              commit("loadDishes", data);
 
               break;
 
@@ -150,21 +147,19 @@ export default createStore({
         case "Menus":
           switch (strategy.action) {
             case "Create":
-              await axios.post("http://localhost:5001/api/menu", data);
+              console.log(element);
+              await axios.post("http://localhost:5001/api/menu/", element, { headers: { Authorization: `Bearer ${token}` } });
               dispatch("fetchMenusFromApi");
-              commit("loadMenus", data);
 
               break;
             case "Update":
-              await axios.put(`http://localhost:5001/api/menu/${id}`, data, { headers: { Authorization: `Bearer ${token}` } });
+              await axios.put(`http://localhost:5001/api/menu/${id}`, element, { headers: { Authorization: `Bearer ${token}` } });
               dispatch("fetchMenusFromApi");
-              commit("loadMenus", data);
 
               break;
             case "Delete":
-              await axios.delete(`http://localhost:5001/api/menu/${id}`, data);
+              await axios.delete(`http://localhost:5001/api/menu/${id}`, element);
               dispatch("fetchMenusFromApi");
-              commit("loadMenus", data);
 
               break;
 
@@ -176,21 +171,17 @@ export default createStore({
         case "Wines":
           switch (strategy.action) {
             case "Create":
-              await axios.post("http://localhost:5001/api/wines", data);
-              dispatch("fetchWinesFromApi");
-              commit("loadWines", data);
+              await axios.post("http://localhost:5001/api/wines", element);
 
               break;
             case "Update":
-              await axios.put(`http://localhost:5001/api/wines/${strategy.id}`, data, { headers: { Authorization: `Bearer ${token}` } });
+              await axios.put(`http://localhost:5001/api/wines/${strategy.id}`, element, { headers: { Authorization: `Bearer ${token}` } });
               dispatch("fetchWinesFromApi");
-              commit("loadWines", data);
 
               break;
             case "Delete":
-              await axios.delete(`http://localhost:5001/api/wines/${strategy.id}`, data);
+              await axios.delete(`http://localhost:5001/api/wines/${strategy.id}`, element);
               dispatch("fetchWinesFromApi");
-              commit("loadWines", data);
 
               break;
 

@@ -2,7 +2,7 @@
   <div>
     <div>
       <label for="name">Name:</label>
-      <input type="text" name="name" v-model="name" />
+      <input type="text" name="name" v-model="name" autocomplete="off" />
     </div>
     <div>
       <label for="image">Image:</label>

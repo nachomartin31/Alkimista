@@ -86,10 +86,10 @@ export default {
   }),
   methods: {
     ...mapActions(["setDataToSend"]),
+
     createDishesObjectToSend() {
       const data = {
         name: this.name,
-        category: this.category,
         image: this.image,
         descriptionCat: this.descriptionCat,
         descriptionSpa: this.descriptionSpa,
@@ -102,6 +102,7 @@ export default {
     },
     setDataAtStore() {
       if (this.confirm) {
+        console.log(this.createDishesObjectToSend());
         this.setDataToSend(this.createDishesObjectToSend());
       } else {
         this.setDataToSend({});

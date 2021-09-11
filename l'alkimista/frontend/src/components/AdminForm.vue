@@ -2,7 +2,7 @@
   <section class="form">
     <form
       @submit.prevent="
-        submitData({ category, action, currentElementId, token })
+        submitData({ category, action, currentElementId, dataToSend })
       "
       class="form__create-form"
     >
@@ -43,9 +43,6 @@ import CreateForm from "./CreateForm/CreateForm.vue";
 import UpdateForm from "./UpdateForm/UpdateForm.vue";
 
 export default {
-  data: () => ({
-    currentElement: "",
-  }),
   computed: {
     ...mapState([
       "dishes",
@@ -54,7 +51,6 @@ export default {
       "currentState",
       "dataToSend",
       "currentElementId",
-      "token",
     ]),
   },
   components: {
@@ -66,7 +62,7 @@ export default {
     ...mapActions(["sendDataToBackend", "stageCurrentElement"]),
     submitData(strategy) {
       if (Object.entries(this.dataToSend).length > 0) {
-        this.sendDataToBackend({ data: this.dataToSend, strategy });
+        this.sendDataToBackend(strategy);
         this.$toast("Data was sent correctly");
       } else {
         this.$toast("Please, confirm your choises");
