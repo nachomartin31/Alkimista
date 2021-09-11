@@ -2,7 +2,14 @@
   <div>
     <div>
       <label for="name">Name:</label>
-      <input type="text" name="name" v-model="name" autocomplete="off" />
+
+      <input
+        type="text"
+        name="name"
+        v-model="name"
+        autocomplete="off"
+        @input="unconfirm"
+      />
     </div>
     <div>
       <label for="image">Image:</label>
@@ -15,6 +22,7 @@
         name="descriptionCat"
         autocomplete="off"
         v-model="descriptionCat"
+        @input="unconfirm"
       />
     </div>
     <div>
@@ -24,6 +32,7 @@
         name="descriptionSpa"
         autocomplete="off"
         v-model="descriptionSpa"
+        @input="unconfirm"
       />
     </div>
     <div>
@@ -33,6 +42,7 @@
         name="ingredentsCat"
         autocomplete="off"
         v-model="ingredientsCat"
+        @input="unconfirm"
       />
     </div>
     <div>
@@ -42,6 +52,7 @@
         name="ingredentsSpa"
         autocomplete="off"
         v-model="ingredientsSpa"
+        @input="unconfirm"
       />
     </div>
     <div>
@@ -56,7 +67,8 @@
       </div>
     </div>
     <label for="price">Price</label>
-    <input type="text" v-model="price" />
+
+    <input type="text" v-model="price" @input="unconfirm" />
     <div>
       <label for="confirm">Confirm</label>
       <input
@@ -70,6 +82,8 @@
 </template>
 <script>
 import { mapActions } from "vuex";
+import setDataAtStore from "../../utils/SetDataAtStore";
+import unconfirm from "../../utils/Unconfirm";
 // import { storage } from "../../firebase";
 
 export default {
@@ -87,7 +101,9 @@ export default {
   methods: {
     ...mapActions(["setDataToSend"]),
 
-    createDishesObjectToSend() {
+    setDataAtStore,
+    unconfirm,
+    createObjectToSend() {
       const data = {
         name: this.name,
         image: this.image,
@@ -99,14 +115,6 @@ export default {
         price: parseFloat(this.price),
       };
       return data;
-    },
-    setDataAtStore() {
-      if (this.confirm) {
-        console.log(this.createDishesObjectToSend());
-        this.setDataToSend(this.createDishesObjectToSend());
-      } else {
-        this.setDataToSend({});
-      }
     },
   },
   props: {

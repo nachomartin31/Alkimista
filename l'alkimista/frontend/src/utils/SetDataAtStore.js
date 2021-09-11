@@ -1,6 +1,6 @@
 export default function setDataAtStore() {
   if (this.confirm) {
-    this.setDataToSend(this.createDishesObjectToSend());
+    this.setDataToSend(this.createObjectToSend());
   } else {
     this.setDataToSend({});
   }

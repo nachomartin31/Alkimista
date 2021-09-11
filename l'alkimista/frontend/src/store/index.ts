@@ -171,7 +171,7 @@ export default createStore({
         case "Wines":
           switch (strategy.action) {
             case "Create":
-              await axios.post("http://localhost:5001/api/wines", element);
+              await axios.post("http://localhost:5001/api/wines", element, { headers: { Authorization: `Bearer ${token}` } });
 
               break;
             case "Update":

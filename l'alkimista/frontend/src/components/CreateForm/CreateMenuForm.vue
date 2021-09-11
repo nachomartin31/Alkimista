@@ -36,12 +36,13 @@
 
 import { mapState, mapActions } from "vuex";
 import setDataAtStore from "../../utils/SetDataAtStore";
+import unconfirm from "../../utils/Unconfirm";
 
 export default {
   data: () => ({
     name: "",
     menuDishes: [],
-    price: 0,
+    price: "",
     confirm: false,
   }),
   computed: {
@@ -49,14 +50,9 @@ export default {
   },
   methods: {
     ...mapActions(["setDataToSend"]),
-    unconfirm() {
-      if (this.confirm) {
-        this.confirm = !this.confirm;
-        this.setDataAtStore();
-      }
-    },
     setDataAtStore,
-    createDishesObjectToSend() {
+    unconfirm,
+    createObjectToSend() {
       const data = {
         name: this.name,
         dishes: this.menuDishes,
