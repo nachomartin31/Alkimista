@@ -27,7 +27,7 @@
         </select>
       </div>
       <update-form
-        v-if="action === 'Update'"
+        v-if="action === 'Update' && thereIsAnObject"
         :category="category"
         :action="action"
       ></update-form>
@@ -43,6 +43,9 @@ import CreateForm from "./CreateForm/CreateForm.vue";
 import UpdateForm from "./UpdateForm/UpdateForm.vue";
 
 export default {
+  data: () => ({
+    thereIsAnObject: false,
+  }),
   computed: {
     ...mapState([
       "dishes",
@@ -69,6 +72,7 @@ export default {
       }
     },
     changeCurrentElement(value) {
+      this.thereIsAnObject = true;
       this.stageCurrentElement(value);
     },
   },
