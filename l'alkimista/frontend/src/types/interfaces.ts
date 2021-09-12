@@ -1,5 +1,5 @@
 interface State {
-    dishes: [{}] | [],
+    dishes: [{tags: [string]}] | [],
     menus: [{}] | [],
     wines: [{}] | [],
     currentDish: object,
@@ -9,6 +9,7 @@ interface State {
     currentState: any,
     dataToSend: object,
     currentElementId: "",
+    tags: [string] | [],
 }
 
 export default State;

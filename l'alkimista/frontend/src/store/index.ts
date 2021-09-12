@@ -18,10 +18,39 @@ export default createStore({
     currentState: [],
     dataToSend: {},
     currentElementId: "",
+    tags: [],
   },
   getters: {
     setCurrentCategory(state: State) {
       return state.currentState;
+    },
+    filterDishes(state: State): object {
+      let filteredDishes: any;
+      const currentTags:any = state.tags;
+      if (currentTags.length === 0) {
+        filteredDishes = state.dishes;
+      } else if (currentTags.length === 1) {
+        const firstTag: any = currentTags[0];
+        filteredDishes = state.dishes.filter((dish) => dish
+          .tags.includes(firstTag));
+      } else if (currentTags.length === 2) {
+        const firstTag: any = currentTags[0];
+        const secondTag: any = currentTags[1];
+
+        filteredDishes = state.dishes.filter((dish) => dish
+          .tags.includes(firstTag) && dish
+          .tags.includes(secondTag));
+      } else if (currentTags.length === 3) {
+        const firstTag: any = currentTags[0];
+        const secondTag: any = currentTags[1];
+        const thirdTag: any = currentTags[1];
+
+        filteredDishes = state.dishes.filter((dish) => dish
+          .tags.includes(firstTag) && dish
+          .tags.includes(secondTag) && dish.tags.includes(thirdTag));
+      }
+
+      return filteredDishes;
     },
   },
   mutations: {
@@ -69,6 +98,9 @@ export default createStore({
     stageElementAsState(state, element) {
       state.currentElementId = element;
     },
+    stageFiltersAtStore(state, payload) {
+      state.tags = payload;
+    },
   },
   actions: {
     async fetchDishesFromApi({ commit }) {
@@ -113,7 +145,6 @@ export default createStore({
       commit("setDataState", data);
     },
     async sendDataToBackend({ dispatch }, strategy) {
-      console.log("the data: ", strategy.dataToSend);
       const element = strategy.dataToSend;
       const id = strategy.currentElementId;
       const encryptedToken: any = localStorage.getItem("token");
@@ -147,7 +178,6 @@ export default createStore({
         case "Menus":
           switch (strategy.action) {
             case "Create":
-              console.log(element);
               await axios.post("http://localhost:5001/api/menu/", element, { headers: { Authorization: `Bearer ${token}` } });
               dispatch("fetchMenusFromApi");
 
@@ -196,7 +226,9 @@ export default createStore({
     async stageCurrentElement({ commit }, id) {
       commit("stageElementAsState", id);
     },
-
+    getDishesFilter({ commit }, tags) {
+      commit("stageFiltersAtStore", tags);
+    },
   },
 
 });
