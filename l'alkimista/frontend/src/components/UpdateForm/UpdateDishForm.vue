@@ -72,7 +72,6 @@ export default {
     createDishesObjectToSend() {
       const data = {
         name: this.name,
-        category: this.category,
         image: this.image,
         descriptionCat: this.descriptionCat,
         descriptionSpa: this.descriptionSpa,
