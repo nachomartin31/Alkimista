@@ -48,11 +48,49 @@ describe("Given an AdminForm component", () => {
           },
         },
       });
-      console.log(wrapper.html());
       await wrapper.find("form").trigger("submit.prevent");
 
       submitData();
       expect(submitData).toHaveBeenCalled();
     });
+  });
+  test("Then submitData should be called", async () => {
+    const submitData = jest.fn();
+    const changeCurrentElement = jest.fn();
+    const wrapper = mount(AdminForm, {
+      props: {
+        action: "Create",
+        category: "Dishes",
+      },
+
+      global: {
+        plugins: [toast],
+        mocks: {
+          data: {
+            thereisAnObject: false,
+
+          },
+          methods: {
+            submitData,
+            changeCurrentElement,
+          },
+          $store: {
+            state: {
+              ...state, dataToSend: {},
+            },
+            actions: {
+              sendDataToBackend: jest.fn(),
+              stageCurrentElement: jest.fn(),
+            },
+            commit: jest.fn(),
+            dispatch: jest.fn(),
+          },
+        },
+      },
+    });
+    await wrapper.find("form").trigger("submit.prevent");
+
+    submitData();
+    expect(submitData).toHaveBeenCalled();
   });
 });
