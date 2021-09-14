@@ -40,5 +40,42 @@ describe("Given a Login view", () => {
       });
       expect(wrapper.html()).toContain("<main>");
     });
+    test("Then logIn should be called", async () => {
+      const logIn = jest.fn();
+      const logOut = jest.fn();
+      const wrapper = mount(Login, {
+        global: {
+          mocks: {
+            data: {
+              login: "",
+              password: "",
+              error: false,
+              noUser: "",
+              action: "Category",
+            },
+            methods: {
+              logIn,
+              logOut,
+            },
+            $store: {
+              state,
+              actions: {
+                fetchDishesFromApi: jest.fn(),
+                fetchMenusFromApi: jest.fn(),
+                fetchWinesFromApi: jest.fn(),
+                fetchUserFromApi: jest.fn(),
+                setCategory: jest.fn(),
+              },
+              commit: jest.fn(),
+              dispatch: jest.fn(),
+            },
+          },
+        },
+      });
+      const form = wrapper.find("#form");
+      await form.trigger("submit.prevent");
+      logIn();
+      expect(logIn).toHaveBeenCalled();
+    });
   });
 });

@@ -72,6 +72,7 @@
     <div>
       <label for="confirm">Confirm</label>
       <input
+        id="confirm"
         type="checkbox"
         name="confirm"
         v-model="confirm"

@@ -39,66 +39,14 @@ const state = {
     {
       _id: "123",
       name: "menu1",
-      dishes: [{
-        _id: "123",
-        name: "dish1",
-        image: "",
-        descriptionCat: "a",
-        descriptionSpa: "",
-        ingredientsCat: ["", "", ""],
-        ingredientsSpa: ["", "", ""],
-        tags: ["", "", ""],
-        price: 12,
-      },
-
-      {
-        _id: "234",
-        name: "dish2",
-        image: "",
-        descriptionCat: "a",
-        descriptionSpa: "",
-        ingredientsCat: ["", "", ""],
-        ingredientsSpa: ["", "", ""],
-        tags: ["", "", ""],
-        price: 12,
-      }],
-      tags: ["", "", ""],
-      price: 12,
-
-    },
-
-    {
-      _id: "234",
-      name: "menu2",
-      dishes: [{
-        _id: "123",
-        name: "dish1",
-        image: "",
-        descriptionCat: "a",
-        descriptionSpa: "",
-        ingredientsCat: ["", "", ""],
-        ingredientsSpa: ["", "", ""],
-        tags: ["", "", ""],
-        price: 12,
-      },
-
-      {
-        _id: "234",
-        name: "dish2",
-        image: "",
-        descriptionCat: "a",
-        descriptionSpa: "",
-        ingredientsCat: ["", "", ""],
-        ingredientsSpa: ["", "", ""],
-        tags: ["", "", ""],
-        price: 12,
-      }],
+      dishes: ["123", "234"],
       tags: ["", "", ""],
       price: 12,
 
     },
 
   ],
+
   wines: [
     {
       _id: "String",
