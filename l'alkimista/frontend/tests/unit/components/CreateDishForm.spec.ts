@@ -1,5 +1,5 @@
 import { mount } from "@vue/test-utils";
-import CreateDishesForm from "../../src/components/CreateForm/CreateDishesForm.vue";
+import CreateDishesForm from "../../../src/components/CreateForm/CreateDishesForm.vue";
 
 describe("Given an CreateDishesForm component", () => {
   describe("When is rendered", () => {

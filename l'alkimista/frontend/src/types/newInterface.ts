@@ -24,8 +24,6 @@ export interface wines{
     year: Number,
     DO: String,
     grapeTypes: Array<String>,
-    ingredientsSpa: Array<String>,
-    tags: Array<String>,
     bottlePrice: Number,
     glassPrice: Number
 }

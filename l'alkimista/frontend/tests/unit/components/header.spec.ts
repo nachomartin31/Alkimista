@@ -1,5 +1,5 @@
 import { mount } from "@vue/test-utils";
-import AppHeader from "../../src/components/AppHeader.vue";
+import AppHeader from "../../../src/components/AppHeader.vue";
 
 describe("Given an AppHeader component", () => {
   describe("When is rendered", () => {

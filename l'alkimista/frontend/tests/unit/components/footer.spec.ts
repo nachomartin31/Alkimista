@@ -1,5 +1,5 @@
 import { mount } from "@vue/test-utils";
-import AppFooter from "../../src/components/AppFooter.vue";
+import AppFooter from "../../../src/components/AppFooter.vue";
 
 describe("Given an AppFooter component", () => {
   describe("When is rendered", () => {
