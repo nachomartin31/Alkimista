@@ -50,8 +50,9 @@ h4 {
   font-weight: 300;
 }
 .dish__data {
+  padding-bottom: 5rem;
   display: flex;
-  margin: 5rem auto;
+  margin: 5rem auto 0;
   align-items: center;
   width: 70%;
   gap: 15%;
