@@ -89,7 +89,7 @@ export default {
     setDataAtStore,
     unconfirm,
     createObjectToSend() {
-      const data = {
+      return {
         name: this.name,
         winery: this.winery,
         type: this.type,
@@ -99,7 +99,6 @@ export default {
         bottlePrice: parseFloat(this.bottlePrice),
         glassPrice: parseFloat(this.glassPrice),
       };
-      return data;
     },
   },
 };

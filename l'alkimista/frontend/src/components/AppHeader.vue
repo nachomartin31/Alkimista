@@ -16,7 +16,7 @@
     </nav>
 
     <div class="mobile-menu">
-      <i class="fas fa-bars mobile-menu__burger"></i>
+      <em class="fas fa-bars mobile-menu__burger"></em>
       <div class="mobile-menu__links">
         <router-link to="/dishes"> Plats </router-link>
         <router-link to="/menus"> Menús </router-link>

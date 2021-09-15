@@ -13,6 +13,7 @@
     </p>
     <section class="home__info">
       <iframe
+        title="location map"
         class="home__maps"
         width="300"
         height="240"

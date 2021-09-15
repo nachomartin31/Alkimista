@@ -85,7 +85,6 @@
 import { mapActions } from "vuex";
 import setDataAtStore from "../../utils/SetDataAtStore";
 import unconfirm from "../../utils/Unconfirm";
-// import { storage } from "../../firebase";
 
 export default {
   data: () => ({
@@ -105,7 +104,7 @@ export default {
     setDataAtStore,
     unconfirm,
     createObjectToSend() {
-      const data = {
+      return {
         name: this.name,
         image: this.image,
         descriptionCat: this.descriptionCat,
@@ -115,7 +114,6 @@ export default {
         tags: this.tags,
         price: parseFloat(this.price),
       };
-      return data;
     },
   },
   props: {

@@ -55,12 +55,11 @@ export default {
     setDataAtStore,
     unconfirm,
     createObjectToSend() {
-      const data = {
+      return {
         name: this.name,
         dishes: this.menuDishes,
         price: parseFloat(this.price),
       };
-      return data;
     },
     addDishToMenu(newDish) {
       if (this.menuDishes.some((dish) => dish === newDish._id)) {

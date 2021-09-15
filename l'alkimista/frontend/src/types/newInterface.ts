@@ -1,53 +1,53 @@
-export interface dishes{
-    _id: String,
-    name: String,
-    image: String,
-    descriptionCat: String,
-    descriptionSpa: String,
-    ingredientsCat: Array<String>,
-    ingredientsSpa: Array<String>,
-    tags: Array<String>,
-    price: Number
+export interface Dishes{
+    _id: string,
+    name: string,
+    image: string,
+    descriptionCat: string,
+    descriptionSpa: string,
+    ingredientsCat: Array<string>,
+    ingredientsSpa: Array<string>,
+    tags: Array<string>,
+    price: number
 }
-export interface menus{
-    _id: String,
-    name: String,
-    dishes: Array<String>
-    price: Number
-}
-
-export interface wines{
-    _id: String,
-    name: String,
-    vinery: String,
-    type: String,
-    year: Number,
-    DO: String,
-    grapeTypes: Array<String>,
-    bottlePrice: Number,
-    glassPrice: Number
+export interface Menus{
+    _id: string,
+    name: string,
+    dishes: Array<string>
+    price: number
 }
 
-export interface user{
-    _id: String,
-    name: String,
-    login: String,
-    password: String,
-    role: String,
+export interface Wines{
+    _id: string,
+    name: string,
+    vinery: string,
+    type: string,
+    year: number,
+    DO: string,
+    grapeTypes: Array<string>,
+    bottlePrice: number,
+    glassPrice: number
+}
+
+export interface User{
+    _id: string,
+    name: string,
+    login: string,
+    password: string,
+    role: string,
 
 }
 
 export interface State {
 
-  dishes: Array<dishes> | [],
-  menus: Array<menus> | [],
-  wines: Array<wines> | [],
-  currentDish: dishes | {},
-  currentWine: wines | {},
-  user: String | user,
-  token: String,
-  currentState: Array<dishes> | Array<menus> | Array<wines> | [],
-  dataToSend: dishes | menus | wines | {},
-  currentElementId: String,
-  tags:Array<String> | [],
+  dishes: Array<Dishes> | [],
+  menus: Array<Menus> | [],
+  wines: Array<Wines> | [],
+  currentDish: Dishes | {},
+  currentWine: Wines | {},
+  user: string | User,
+  token: string,
+  currentState: Array<Dishes> | Array<Menus> | Array<Wines> | [],
+  dataToSend: Dishes | Menus | Wines | {},
+  currentElementId: string,
+  tags:Array<string> | [],
 }

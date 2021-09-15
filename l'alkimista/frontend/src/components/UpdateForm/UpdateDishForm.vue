@@ -70,7 +70,7 @@ export default {
   methods: {
     ...mapActions(["setDataToSend"]),
     createDishesObjectToSend() {
-      const data = {
+      return {
         name: this.name,
         image: this.image,
         descriptionCat: this.descriptionCat,
@@ -80,7 +80,6 @@ export default {
         tags: this.tags,
         price: parseFloat(this.price),
       };
-      return data;
     },
 
     setDataAtStore() {

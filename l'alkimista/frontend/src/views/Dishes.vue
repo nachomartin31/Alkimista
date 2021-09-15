@@ -4,7 +4,7 @@
     <div class="filters">
       <h3>Filtres:</h3>
       <div class="icon glutenFree">
-        <img src="../assets/gluten-free.svg" />
+        <img src="../assets/gluten-free.svg" alt="gluten-free" />
         <input
           type="checkbox"
           name="Gluten-free"
@@ -14,22 +14,22 @@
         />
       </div>
 
-      <i class="fas fa-map-marker-alt icon proximity"
+      <em class="fas fa-map-marker-alt icon proximity"
         ><input
           type="checkbox"
           name="Proximity"
           value="proximity"
           v-model="newTags"
           @change="addTag()"
-      /></i>
-      <i class="fas fa-seedling icon vegan"
+      /></em>
+      <em class="fas fa-seedling icon vegan"
         ><input
           type="checkbox"
           name="Vegan"
           value="vegan"
           v-model="newTags"
           @change="addTag()"
-      /></i>
+      /></em>
     </div>
 
     <ul>

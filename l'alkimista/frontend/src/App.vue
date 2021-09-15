@@ -49,7 +49,6 @@ body {
 }
 #app {
   box-sizing: border-box;
-  color: #37474f;
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
