@@ -8,7 +8,7 @@ const state = {
       descriptionSpa: "",
       ingredientsCat: ["", "", ""],
       ingredientsSpa: ["", "", ""],
-      tags: ["", "", ""],
+      tags: ["12", "23", "34"],
       price: 12,
     },
 
