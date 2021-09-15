@@ -15,13 +15,13 @@ const mutations = {
   loadWines(state: State, payload: Array<wines>) {
     state.wines = payload;
   },
-  loadOneDish(state: State, payload: Array<dishes>) {
+  loadOneDish(state: State, payload: dishes) {
     state.currentDish = payload;
   },
-  loadOneWine(state: State, payload: Array<dishes>) {
+  loadOneWine(state: State, payload: wines) {
     state.currentWine = payload;
   },
-  loadUser(state: State, payload: {user: user, token: string}) {
+  loadUser(state: State, payload: {user: user | string, token: string}) {
     state.token = payload.token;
     state.user = payload.user;
   },

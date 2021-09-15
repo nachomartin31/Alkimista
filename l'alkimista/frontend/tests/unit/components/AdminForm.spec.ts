@@ -90,6 +90,7 @@ describe("Given an AdminForm component", () => {
     });
     await wrapper.find("form").trigger("submit.prevent");
 
+    changeCurrentElement();
     submitData();
     expect(submitData).toHaveBeenCalled();
   });

@@ -26,7 +26,7 @@
       </section>
     </div>
 
-    <form v-else class="login__form" @submit.prevent="logIn">
+    <form id="form" v-else class="login__form" @submit.prevent="logIn">
       <h2>Login</h2>
       <div>
         <label for="user">User:</label>

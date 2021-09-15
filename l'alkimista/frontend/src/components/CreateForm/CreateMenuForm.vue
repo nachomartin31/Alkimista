@@ -8,6 +8,7 @@
       <h5 for="dishes">Dishes:</h5>
       <label for="dish" v-for="element in dishes" :key="element">
         <input
+          id="dish"
           type="checkbox"
           name="dish"
           value="element"
@@ -23,6 +24,7 @@
       </div>
       <label for="confirm">Confirm</label>
       <input
+        id="confirm"
         type="checkbox"
         name="confirm"
         v-model="confirm"
