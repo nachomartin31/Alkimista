@@ -3,11 +3,12 @@
 import state from "../../mockedState";
 import getters from "../../../src/store/getters";
 
-describe("", () => {
-  describe("", () => {
-    test("", () => {
+describe("Given a getters module", () => {
+  describe("When a filterDishes function is invoked", () => {
+    test("filterDishes should return a proper array with 3 tags", () => {
       const { filterDishes } = getters;
 
+      state.tags = ["12", "23", "34"];
       expect(filterDishes(state)).toEqual([{
         _id: "123",
         name: "dish1",
@@ -20,7 +21,7 @@ describe("", () => {
         price: 12,
       }]);
     });
-    test("", () => {
+    test("filterDishes should return a proper array with 2 tags", () => {
       const { filterDishes } = getters;
       state.tags = ["12", "23"];
       expect(filterDishes(state)).toEqual([{
@@ -35,7 +36,7 @@ describe("", () => {
         price: 12,
       }]);
     });
-    test("", () => {
+    test("filterDishes should return a proper array with 1 tag", () => {
       const { filterDishes } = getters;
       state.tags = ["12"];
       expect(filterDishes(state)).toEqual([{
@@ -50,7 +51,7 @@ describe("", () => {
         price: 12,
       }]);
     });
-    test("", () => {
+    test("filterDishes should return a proper array with no tags", () => {
       const { filterDishes } = getters;
       state.tags = [];
       expect(filterDishes(state)).toEqual([{

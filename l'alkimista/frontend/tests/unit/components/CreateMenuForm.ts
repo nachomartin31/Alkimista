@@ -16,6 +16,7 @@ describe("Given an CreateMenuForm component", () => {
     test("Then createObjectToSend should be called", async () => {
       const createObjectToSend = jest.fn();
       const addDishToSend = jest.fn();
+      const addDishToMenu = jest.fn();
       const wrapper = mount(CreateMenuForm, {
         props: {
           action: "Create",
@@ -33,6 +34,7 @@ describe("Given an CreateMenuForm component", () => {
             methods: {
               createObjectToSend,
               addDishToSend,
+              addDishToMenu,
             },
             params: "123",
             $store: {
@@ -51,6 +53,17 @@ describe("Given an CreateMenuForm component", () => {
       const checkbox = wrapper.find("#dish");
       await checkbox.trigger("click");
       createObjectToSend();
+      addDishToMenu({
+        _id: "123",
+        name: "dish1",
+        image: "",
+        descriptionCat: "a",
+        descriptionSpa: "",
+        ingredientsCat: ["", "", ""],
+        ingredientsSpa: ["", "", ""],
+        tags: ["12", "23", "34"],
+        price: 12,
+      });
       expect(wrapper.html()).toContain("<input type=");
     });
   });

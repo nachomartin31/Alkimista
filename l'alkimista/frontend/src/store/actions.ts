@@ -108,6 +108,7 @@ const actions = {
         switch (strategy.action) {
           case "Create":
             await axios.post("http://localhost:5001/api/wines", element, { headers: { Authorization: `Bearer ${token}` } });
+            dispatch("fetchWinesFromApi");
 
             break;
           case "Update":

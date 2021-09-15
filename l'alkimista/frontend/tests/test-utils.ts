@@ -12,27 +12,24 @@ const configActionContextAndState = (commit: Commit, state: State): any => ({
   rootGetters: jest.fn(),
 });
 
-const configActionContext = (state: State): any => ({
-  state,
-  commit: jest.fn(),
+const configActionContext = (commit: Commit): any => ({
+  commit,
   dispatch: jest.fn(),
   getters: jest.fn(),
   rootState: {} as State,
   rootGetters: jest.fn(),
 });
 
-const configActionContextAndDispatch = (state: State, dispatch: Dispatch): any => ({
-  state,
-  dispatch,
+const configActionContextAndDispatch = (dispatch: Dispatch): any => ({
   commit: jest.fn(),
+  dispatch,
   getters: jest.fn(),
   rootState: {} as State,
   rootGetters: jest.fn(),
 });
 
-export default {
-  configActionContextAndState,
+export {
   configActionContext,
+  configActionContextAndState,
   configActionContextAndDispatch,
-
 };
