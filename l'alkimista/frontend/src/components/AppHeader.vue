@@ -5,7 +5,7 @@
         class="logo"
         color="white"
         alt="logo"
-        src="..\assets\LAlkimista.svg"
+        src="..\assets\LAlkimistaWhite.svg"
       />
     </router-link>
     <nav>

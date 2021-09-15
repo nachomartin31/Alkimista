@@ -76,7 +76,7 @@ li {
 .filters {
   display: flex;
   width: fit-content;
-  margin: 2rem auto;
+  margin: 2rem auto 4rem;
   gap: 1rem;
 }
 .icon {

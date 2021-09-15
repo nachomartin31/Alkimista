@@ -37,6 +37,7 @@ h3 {
 }
 h5 {
   color: #bf0101;
+  color: #bf010142;
   margin-top: 1.2rem;
   margin-bottom: 1rem;
 }
@@ -44,6 +45,8 @@ body {
   /* background-image: url("./assets/LAlkimista.svg"); */
   background-image: url("./assets/LAlkimista.svg");
   background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
   min-height: 100vh;
   position: relative;
 }
