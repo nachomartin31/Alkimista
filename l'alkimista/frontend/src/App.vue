@@ -42,8 +42,8 @@ h5 {
 }
 body {
   /* background-image: url("./assets/LAlkimista.svg"); */
+  background-image: url("./assets/LAlkimista.svg");
   background-repeat: no-repeat;
-  background-size: cover;
   min-height: 100vh;
   position: relative;
 }
@@ -53,7 +53,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
+  color: #212121;
   margin: 0 auto;
   padding: 0;
 }

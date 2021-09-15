@@ -2,7 +2,6 @@
   <main>
     <h2>Els nostres plats</h2>
     <div class="filters">
-      <h3>Filtres:</h3>
       <div class="icon glutenFree">
         <img src="../assets/gluten-free.svg" alt="gluten-free" />
         <input
@@ -35,7 +34,7 @@
     <ul>
       <li v-for="dish in filterDishes" :key="dish">
         <router-link :to="'/dishes/' + dish._id"
-          ><span>{{ dish.name }}</span></router-link
+          ><span class="dish">{{ dish.name }}</span></router-link
         >
       </li>
     </ul>
@@ -96,7 +95,7 @@ li {
   position: relative;
 }
 .vegan:hover::after {
-  content: "vegan";
+  content: "Vegà";
   color: #37be43;
   font-size: 1rem;
   bottom: -1rem;
@@ -107,7 +106,7 @@ li {
 }
 
 .glutenFree:hover::after {
-  content: "gluten-free";
+  content: "Sense gluten";
   width: fit-content;
   color: #3798be;
   font-size: 1rem;
@@ -118,10 +117,13 @@ li {
   position: relative;
 }
 .proximity:hover::after {
-  content: "proximity";
+  content: "De proximitat";
   color: #df3939;
   font-size: 1rem;
-  bottom: -1rem;
+  bottom: -2rem;
   position: absolute;
+}
+.dish {
+  color: #bf0101;
 }
 </style>

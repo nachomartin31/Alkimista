@@ -12,7 +12,9 @@
       <router-link class="button-header" to="/dishes"> Plats </router-link>
       <router-link class="button-header" to="/menus"> Menús </router-link>
       <router-link class="button-header" to="/wines"> Vins </router-link>
-      <router-link class="button-header" to="/booking"> Reservar </router-link>
+      <router-link class="button-header booking" to="/booking">
+        Reservar
+      </router-link>
     </nav>
 
     <div class="mobile-menu">
@@ -47,7 +49,7 @@ header {
 
 nav {
   position: absolute;
-  right: 2rem;
+  right: 5rem;
   padding: 0.8rem;
 }
 
@@ -64,6 +66,9 @@ a {
 }
 .button-header {
   margin: 0 1rem;
+}
+.booking {
+  display: none;
 }
 
 .title {

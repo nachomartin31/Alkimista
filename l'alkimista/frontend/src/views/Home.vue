@@ -2,14 +2,13 @@
   <main class="home">
     <h1>L'Alkimista</h1>
     <p class="home__description">
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis euismod
-      consequat dictum. Nulla dignissim varius massa, non blandit dui fermentum
-      eu. Proin sed gravida erat. Integer nec auctor purus, nec posuere libero.
-      Morbi elementum nibh vitae dolor lobortis, in gravida mi pharetra. Donec
-      eu feugiat lectus. In quis orci eu justo auctor ornare nec sed est. In at
-      vulputate lectus, nec ultricies felis. Mauris metus risus, tempor quis
-      tincidunt sit amet, maximus eu risus. Vivamus vestibulum mi ex, sed
-      tristique nunc ullamcorper at.
+      L'Alkimista és un restaurant situat al cor de la ciutat de Reus i també un
+      punt de trobada per la gastronomia d'arreu del món. Especialment ens
+      agrada treballar amb la fusió entre la cuina mediterrània i la oriental.
+      L'objectiu de l'Alkimista és crear nous plats que aconsegueixin prendre
+      per sorpresa els sentits dels nostres clients i encisar-los. És per aquest
+      motiu que la nostra carta es renova constantment i les nostres creacions
+      no es poden trobar enlloc més.
     </p>
     <section class="home__info">
       <iframe

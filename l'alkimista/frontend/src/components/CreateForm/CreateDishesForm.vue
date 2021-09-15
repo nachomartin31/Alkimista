@@ -58,12 +58,22 @@
     <div>
       <label for="tags">Preferences:</label>
       <div>
-        <label for="tags">Glutten-free</label>
-        <input type="checkbox" name="Glutten" />
+        <label for="tags">Gluten-free</label>
+        <input
+          type="checkbox"
+          name="Glutten"
+          v-model="tags"
+          value="gluten-free"
+        />
         <label for="tags">Proximity</label>
-        <input type="checkbox" name="Proximity" />
+        <input
+          type="checkbox"
+          name="Proximity"
+          v-model="tags"
+          value="proximity"
+        />
         <label for="tags">Vegan</label>
-        <input type="checkbox" name="Vegan" />
+        <input type="checkbox" name="Vegan" v-model="tags" value="vegan" />
       </div>
     </div>
     <label for="price">Price</label>
