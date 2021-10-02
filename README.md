@@ -2,7 +2,8 @@ This is a still in progress web app for a restaurant page.
 
 In this repository you can find:
 
-Principles SOLID and DRY
+- Principles SOLID and DRY
+- Typescript
 
 On the FRONTEND side:
 - Vue3
