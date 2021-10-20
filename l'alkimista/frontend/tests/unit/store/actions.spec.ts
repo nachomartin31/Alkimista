@@ -70,7 +70,7 @@ describe("Given a fetchUser function", () => {
     test("'CryptoJS.AES.encrypt' shold have been called", async () => {
       mockedAxios.post.mockResolvedValue({ data: { user: { name: "hgd" }, token: "hj" } });
       process.env.VUE_APP_SECRET = "dfa";
-      CryptoJS.AES.encrypt = jest.fn().mockReturnValue([].toString());
+      CryptoJS.AES.encrypt = jest.fn().mockReturnValue({}.toString());
       await actions.fetchUser(configActionContext(commit), { user: { name: "" }, token: "" });
       expect(CryptoJS.AES.encrypt).toHaveBeenCalled();
     });
